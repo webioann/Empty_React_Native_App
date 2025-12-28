@@ -9,7 +9,7 @@ export default function Index() {
         alignItems: "center",
       }}
     >
-      <Text>Same text for testing</Text>
+      <Text style={{ fontSize: 30 }}>Same text for testing</Text>
     </View>
   );
 }
