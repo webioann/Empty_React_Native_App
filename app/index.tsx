@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 export default function Index() {
   return (
     <View style={styles.page}>
-      <Text style={styles.header}>Mobile App text</Text>
+      <Text style={styles.header}>Mobile App with test commit</Text>
     </View>
   );
 }
