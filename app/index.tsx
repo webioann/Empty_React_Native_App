@@ -1,15 +1,22 @@
-import { Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
 export default function Index() {
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text style={{ fontSize: 30 }}>Same text for testing</Text>
+    <View style={styles.page}>
+      <Text style={styles.header}>Mobile App</Text>
     </View>
   );
 }
+const styles = StyleSheet.create({
+  page: {
+    flex: 1,
+    justifyContent: "flex-start",
+    alignItems: "center",
+  },
+  header: {
+    fontSize: 30,
+    fontWeight: "bold",
+    marginBottom: 20,
+    color: "blue",
+  }
+});
