@@ -1,17 +1,26 @@
-import { StyleSheet, Text, View } from "react-native";
+import { useRouter } from "expo-router";
+import { Button, StyleSheet, Text, View } from "react-native";
+
 
 export default function Index() {
+  const router = useRouter();
   return (
     <View style={styles.page}>
-      <Text style={styles.header}>Mobile App with test commit</Text>
+      <Text style={styles.header}>INDEX SCREEN</Text>
+      <Button title="Go to Products" onPress={() => router.push("./screens/Products_Screen")} />
+      <Button title="Go to Cart" onPress={() => router.push("./(tabs)/Cart_Screen")} />
+      <Button title="Go to Account" onPress={() => router.push("./screens/Account_Screen")} />
+      <Button title="Go to Payment" onPress={() => router.push("./(tabs)/Payment_Screen")} />
     </View>
   );
 }
 const styles = StyleSheet.create({
   page: {
+    paddingTop: 50,
     flex: 1,
     justifyContent: "flex-start",
     alignItems: "center",
+    gap: 20,
   },
   header: {
     fontSize: 30,
