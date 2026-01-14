@@ -5,7 +5,6 @@ import { Tabs } from "expo-router";
 
 export default function TabLayout() {
   return <Tabs>
-    {/* Welcome Screen */}
     <Tabs.Screen 
       name="index" 
       options={{ 
@@ -14,7 +13,6 @@ export default function TabLayout() {
         headerShown: false,
       }} 
     />
-    {/* Payments Screen */}
     <Tabs.Screen 
       name="./Payments_Screen" 
       options={{ 
@@ -23,7 +21,6 @@ export default function TabLayout() {
       headerShown: false,
       }} 
     />
-    {/* Cart Screen */}
     <Tabs.Screen 
       name="./Cart_Screen" 
       options={{ 

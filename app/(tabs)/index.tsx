@@ -1,10 +1,11 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text } from "react-native";
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function Welcome_Screen() {
     return (
-        <View style={styles.page}>
-        <Text style={styles.header}>WELCOME SCREEN</Text>
-        </View>
+        <SafeAreaView style={styles.page}>
+            <Text style={styles.header}>WELCOME SCREEN</Text>
+        </SafeAreaView>
     );
 }
 const styles = StyleSheet.create({
@@ -16,7 +17,6 @@ const styles = StyleSheet.create({
     header: {
         fontSize: 30,
         fontWeight: "bold",
-        marginBottom: 20,
         color: "blue",
     }
 });

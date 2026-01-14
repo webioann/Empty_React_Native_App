@@ -1,15 +1,13 @@
 import { Stack } from "expo-router";
 
-export default function RootLayout() {
-  return <Stack>
-    {/* Home Screen */}
+function RootLayout() {
+  return  <Stack>
     <Stack.Screen 
       name="index" 
       options={{ 
         title: "home", 
       }} 
     />
-    {/* Products Screen */}
     <Stack.Screen 
       name="screens/Products_Screen" 
       options={{ 
@@ -17,7 +15,6 @@ export default function RootLayout() {
         headerBackTitle: "Back",
       }} 
     />
-    {/* Cart Screen */}
     <Stack.Screen 
       name="screens/Account_Screen" 
       options={{ 
@@ -26,3 +23,4 @@ export default function RootLayout() {
       />
   </Stack>;
 }
+export default RootLayout;
