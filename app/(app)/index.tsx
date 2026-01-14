@@ -1,10 +1,12 @@
 import { StyleSheet, Text } from "react-native";
+import ColoredList from "../../components/ColoredList";
 import SafeAreaScreen from "../../components/SafeAreaScreen";
 
 export default function Shop_Screen() {
     return (
         <SafeAreaScreen>
             <Text style={styles.header}>SHOP SCREEN</Text>
+            <ColoredList color="purple" />
         </SafeAreaScreen>
     );
 }

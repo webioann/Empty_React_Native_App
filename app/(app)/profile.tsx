@@ -1,10 +1,12 @@
-import { StyleSheet, Text } from "react-native";
+import { StyleSheet } from "react-native";
+import ColoredList from "../../components/ColoredList";
 import SafeAreaScreen from "../../components/SafeAreaScreen";
 
 export default function Profile_Screen() {
     return (
         <SafeAreaScreen>
-            <Text style={styles.header}>PROFILE SCREEN</Text>
+            {/* <Text style={styles.header}>PROFILE SCREEN</Text> */}
+            <ColoredList color="green" />
         </SafeAreaScreen>
     );
 }

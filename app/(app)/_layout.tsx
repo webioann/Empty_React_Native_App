@@ -6,7 +6,7 @@ export default function TabLayout() {
     <Tabs.Screen 
       name="index"
       options={{ 
-        title: "shop" , 
+        title: "Shop" , 
         tabBarIcon: () => (<Ionicons name="grid" size={24} color="red" />),
         headerShown: false,
       }} 
@@ -14,7 +14,7 @@ export default function TabLayout() {
     <Tabs.Screen 
       name="cart" 
       options={{ 
-        title: "cart" ,
+        title: "Cart" ,
         tabBarIcon: () => (<FontAwesome6 name="cart-shopping" size={24} color="black" />),
       headerShown: false,
       }} 
@@ -22,7 +22,7 @@ export default function TabLayout() {
     <Tabs.Screen 
       name="profile" 
       options={{ 
-        title: "profile" ,
+        title: "Profile" ,
         tabBarIcon: () => (<MaterialIcons name="person" size={24} color="black" />),
       headerShown: false,
       }} 
