@@ -1,22 +1,19 @@
 import { useRouter } from "expo-router";
 import { Button, StyleSheet, Text, View } from "react-native";
-import { SafeAreaView } from 'react-native-safe-area-context';
-import App from "./App";
+import SafeAreaScreen from "../components/SafeAreaScreen";
 
 export default function Index() {
   const router = useRouter();
   return (
-    <App>
-      <SafeAreaView style={{ flex: 1 }}>
-        <View style={styles.page}>
-          <Text style={styles.header}>INDEX SCREEN</Text>
-          <Button title="Go to Products" onPress={() => router.push("./screens/Products_Screen")} />
-          <Button title="Go to Cart" onPress={() => router.push("./(tabs)/Cart_Screen")} />
-          <Button title="Go to Account" onPress={() => router.push("./screens/Account_Screen")} />
-          <Button title="Go to Payment" onPress={() => router.push("./(tabs)/Payment_Screen")} />
-        </View>
-      </SafeAreaView>
-    </App>
+    <SafeAreaScreen>
+      <View style={styles.page}>
+      <Text style={styles.header}>INDEX SCREEN</Text>
+      <Button title="Go CART" onPress={() => router.push("./cart.tsx")} />
+      <Button title="Go to Welcome" onPress={() => router.push("./(tabs)/index.tsx")} />
+      <Button title="Go to Account" onPress={() => router.push("./account.tsx")} />
+      <Button title="Go to Payment" onPress={() => router.push("./(tabs)/payments.tsx")} />
+    </View>
+    </SafeAreaScreen>
   );
 }
 const styles = StyleSheet.create({
@@ -26,6 +23,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "center",
     gap: 20,
+    backgroundColor: "#bbbbbb",
   },
   header: {
     fontSize: 30,

@@ -5,18 +5,18 @@ function RootLayout() {
     <Stack.Screen 
       name="index" 
       options={{ 
-        title: "home", 
+        title: "shop" , 
       }} 
     />
     <Stack.Screen 
-      name="screens/Products_Screen" 
+      name="cart" 
       options={{ 
-        title: "products" ,
+        title: "cart" ,
         headerBackTitle: "Back",
       }} 
     />
     <Stack.Screen 
-      name="screens/Account_Screen" 
+      name="account" 
       options={{ 
         title: "account",
       }} 
