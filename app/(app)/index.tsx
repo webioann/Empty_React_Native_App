@@ -1,10 +1,10 @@
-import SafeAreaScreen from "@/components/SafeAreaScreen";
 import { StyleSheet, Text } from "react-native";
+import SafeAreaScreen from "../../components/SafeAreaScreen";
 
-export default function Account_Screen() {
+export default function Shop_Screen() {
     return (
         <SafeAreaScreen>
-            <Text style={styles.header}>ACCOUNT SCREEN</Text>
+            <Text style={styles.header}>SHOP SCREEN</Text>
         </SafeAreaScreen>
     );
 }

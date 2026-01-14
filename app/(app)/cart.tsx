@@ -1,5 +1,5 @@
-import SafeAreaScreen from "@/components/SafeAreaScreen";
 import { StyleSheet, Text } from "react-native";
+import SafeAreaScreen from "../../components/SafeAreaScreen";
 
 export default function Cart_Screen() {
     return (
