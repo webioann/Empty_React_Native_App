@@ -1,7 +1,7 @@
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import { Tabs } from "expo-router";
 
-export default function TabLayout() {
+export default function Tabs_Layout() {
   return <Tabs>
     <Tabs.Screen 
       name="index"

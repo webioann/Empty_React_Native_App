@@ -1,35 +1,10 @@
+import { fakeAuthHook } from "@/controllers/auth.controllers/fakeAuth";
 import { Stack } from "expo-router";
 
-function RootLayout() {
+function Index_Layout() {
+  const { isSignedIn } = fakeAuthHook();
+  // if (!isSignedIn) return <Redirect href="./(auth)/" />;
+    
   return <Stack screenOptions={{ headerShown: false }} />;
-  // return  <Stack
-  //   screenOptions={{
-  //     headerStyle: { backgroundColor: "yellow" },
-  //     headerTintColor: "#000",
-  //     headerTitleStyle: { fontWeight: "bold" },
-  //     headerShadowVisible: false,
-  //     // headerBackVisible: true,
-  //   }}
-  // >
-  //   <Stack.Screen 
-  //     name="index" 
-  //     options={{ 
-  //       title: "shop" , 
-  //     }} 
-  //   />
-  //   <Stack.Screen 
-  //     name="cart" 
-  //     options={{ 
-  //       title: "cart" ,
-  //       headerBackTitle: "Back",
-  //     }} 
-  //   />
-  //   <Stack.Screen 
-  //     name="account" 
-  //     options={{ 
-  //       title: "account",
-  //     }} 
-  //     />
-  // </Stack>;
 }
-export default RootLayout;
+export default Index_Layout;
