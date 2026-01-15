@@ -1,7 +1,12 @@
+import { fakeAuthHook } from "@/controllers/auth.controllers/fakeAuth";
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
-import { Tabs } from "expo-router";
+import { Redirect, Tabs } from "expo-router";
 
 export default function Tabs_Layout() {
+  // PROTECTION ROUTE
+  const { isSignedIn } = fakeAuthHook();
+  if (!isSignedIn) return <Redirect href="./(auth)/" />;
+
   return <Tabs>
     <Tabs.Screen 
       name="index"
