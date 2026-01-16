@@ -1,6 +1,6 @@
 import SafeAreaScreen from '@/components/SafeAreaScreen';
 import React from 'react';
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity } from 'react-native';
 
 const Auth_Screen = () => {
     return (
@@ -25,9 +25,13 @@ const Auth_Screen = () => {
                 </Text>
             </TouchableOpacity>
 
-            <View style={styles.auth_screen}>
-                <Text>index vvvvvv</Text>
-            </View>
+            <Text style={[styles.auth_footer, {color: 'grey' }]}>
+                By signing up, you agree to our
+                <Text style={styles.link_blue}> Terms, </Text>
+                <Text style={styles.link_blue}>Privacy Policy, </Text>
+                { "and " }
+                <Text style={styles.link_blue}>Cookie Use .</Text>
+            </Text>
         </SafeAreaScreen>
     )
 }
@@ -35,11 +39,6 @@ const Auth_Screen = () => {
 export default Auth_Screen;
 
 const styles = StyleSheet.create({
-    auth_screen: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
     auth_image: {
         width: '100%',
         height: 200,
@@ -61,5 +60,15 @@ const styles = StyleSheet.create({
         width: 30,
         height: 30,
         marginRight: 10,
+    },
+    auth_footer: {
+        marginTop: 20,
+        paddingHorizontal: 40,
+        textAlign: 'center',
+    },
+    link_blue: { 
+        color: 'blue',
+        fontWeight: 600 ,
+        fontSize: 13
     }
 })
