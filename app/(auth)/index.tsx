@@ -1,4 +1,5 @@
 import SafeAreaScreen from '@/components/SafeAreaScreen';
+import { Link } from 'expo-router';
 import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity } from 'react-native';
 
@@ -27,10 +28,17 @@ const Auth_Screen = () => {
 
             <Text style={[styles.auth_footer, {color: 'grey' }]}>
                 By signing up, you agree to our
-                <Text style={styles.link_blue}> Terms, </Text>
-                <Text style={styles.link_blue}>Privacy Policy, </Text>
+                <Link href="../agreements/terms" asChild>
+                    <Text style={styles.link_blue}> Terms, </Text>
+                </Link>
+                {""}
+                <Link href="../agreements/privacy" asChild>
+                    <Text style={styles.link_blue}> Privacy Policy, </Text>
+                </Link>
                 { "and " }
-                <Text style={styles.link_blue}>Cookie Use .</Text>
+                <Link href="../agreements/cookie_use" asChild>
+                    <Text style={styles.link_blue}>Cookie Use .</Text>
+                </Link>
             </Text>
         </SafeAreaScreen>
     )
@@ -51,8 +59,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         borderRadius: 10,
         borderWidth: 2,
-        marginTop: 10,
-        padding: 10,
+        marginVertical: 10,
+        padding: 5,
         width: '80%',
         alignSelf: 'center',
     },
@@ -62,13 +70,14 @@ const styles = StyleSheet.create({
         marginRight: 10,
     },
     auth_footer: {
+        width: '80%',
         marginTop: 20,
-        paddingHorizontal: 40,
-        textAlign: 'center',
+        marginHorizontal: 'auto',
+        lineHeight: 24,
     },
     link_blue: { 
         color: 'blue',
         fontWeight: 600 ,
-        fontSize: 13
+        fontSize: 14
     }
 })
