@@ -2,8 +2,11 @@ import SafeAreaScreen from '@/components/SafeAreaScreen';
 import { Link } from 'expo-router';
 import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import useColors from '../../hooks/useThemeColors';
 
 const Auth_Screen = () => {
+    const themeMode = useColors()
+    
     return (
         <SafeAreaScreen>
             <Image 
@@ -13,8 +16,9 @@ const Auth_Screen = () => {
             />
             {/* oAuth Google authentication button */}
             <TouchableOpacity style={[styles.auth_button, { borderColor: '#bbbbbb'}]}>
+                <Link href={'../(app)/profile'}/>
                 <Image source={require('@/assets/images/react-logo.png')} style={styles.btn_image} />
-                <Text style={{ fontWeight: 'bold', color: 'grey', fontSize: 16 }}>
+                <Text style={{ fontWeight: 'bold', color: themeMode?.text_main, fontSize: 16 }}>
                     Continue with Google
                 </Text>
             </TouchableOpacity>
