@@ -1,27 +1,36 @@
 import SafeAreaScreen from '@/components/SafeAreaScreen';
 import { Link } from 'expo-router';
 import React from 'react';
-import { Image, StyleSheet, Text, TouchableOpacity } from 'react-native';
-import useColors from '../../hooks/useThemeColors';
+import { Appearance, Image, StyleSheet, Switch, Text, TouchableOpacity, useColorScheme } from 'react-native';
+// import { useThemeColors } from '../../hooks/useThemeColors';
 
 const Auth_Screen = () => {
-    const themeMode = useColors()
+    // const theme = useThemeColors()
+    const scheme = useColorScheme()
     
     return (
         <SafeAreaScreen>
+            <Text>{scheme}</Text>
+            <Switch
+                    value={scheme === 'dark'}
+                    onChange={() => {
+                    Appearance.setColorScheme(scheme === 'dark' ? 'light' : 'dark');
+                    }}
+                />
             <Image 
                 source={require('@/assets/images/auth-image.png')} 
                 style={styles.auth_image}
                 resizeMode='contain'
             />
             {/* oAuth Google authentication button */}
-            <TouchableOpacity style={[styles.auth_button, { borderColor: '#bbbbbb'}]}>
-                <Link href={'../(app)/profile'}/>
-                <Image source={require('@/assets/images/react-logo.png')} style={styles.btn_image} />
-                <Text style={{ fontWeight: 'bold', color: themeMode?.text_main, fontSize: 16 }}>
-                    Continue with Google
-                </Text>
-            </TouchableOpacity>
+            <Link href={'../(app)/'} asChild >
+                <TouchableOpacity style={[styles.auth_button, { borderColor: '#bbbbbb'}]}>
+                    <Image source={require('@/assets/images/react-logo.png')} style={styles.btn_image} />
+                    <Text style={{ fontWeight: 'bold', color: 'red', fontSize: 16 }}>
+                        Continue with Google
+                    </Text>
+                </TouchableOpacity>
+            </Link>
             {/* oAuth Github authentication button */}
             <TouchableOpacity style={[styles.auth_button, { borderColor: '#bbbbbb'}]}>
                 <Image source={require('@/assets/images/react-logo.png')} style={styles.btn_image} />
@@ -35,11 +44,11 @@ const Auth_Screen = () => {
                 <Link href="../agreements/terms" asChild>
                     <Text style={styles.link_blue}> Terms, </Text>
                 </Link>
-                {""}
+                <Text>  </Text>
                 <Link href="../agreements/privacy" asChild>
                     <Text style={styles.link_blue}> Privacy Policy, </Text>
                 </Link>
-                { "and " }
+                <Text> and </Text>
                 <Link href="../agreements/cookie_use" asChild>
                     <Text style={styles.link_blue}>Cookie Use .</Text>
                 </Link>

@@ -1,7 +1,7 @@
 import { fakeAuthHook } from '@/controllers/auth.controllers/fakeAuth';
 import { FontAwesome6, Ionicons, MaterialIcons } from '@expo/vector-icons';
 import { BlurView } from "expo-blur";
-import { Redirect, Tabs } from "expo-router";
+import { Tabs } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function App_Layout() {
@@ -9,7 +9,7 @@ export default function App_Layout() {
   const insets = useSafeAreaInsets();
   // PROTECTION ROUTE
   const { isSignedIn } = fakeAuthHook();
-  if (!isSignedIn) return <Redirect href="./(auth)/" />;
+  // if (!isSignedIn) return <Redirect href="./(auth)/" />;
   
   return <Tabs screenOptions={{
         tabBarActiveTintColor: "#1DB954",
@@ -46,6 +46,7 @@ export default function App_Layout() {
         tabBarIcon: () => (<Ionicons name="grid" size={24} color="red" />)
       }} 
     />
+
     <Tabs.Screen 
       name="cart" 
       options={{ 

@@ -5,7 +5,11 @@ export type ColorsList = {
     bg_minor: string
     text_main: string
     text_second: string
-    accent: string
+    red: string
+    blue: string
+    green: string
+    purple: string
+    yellow: string
 }
 export type LightColors = { light: ColorsList }
 export type DarkColors = { dark: ColorsList }

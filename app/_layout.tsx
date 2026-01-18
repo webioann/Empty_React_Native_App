@@ -1,6 +1,11 @@
+import ThemeProvider from "@/context/ThemeContext";
 import { Stack } from "expo-router";
 
 function Index_Layout() {
-  return <Stack screenOptions={{ headerShown: false }} />;
+  return (
+    <ThemeProvider>
+      <Stack screenOptions={{ headerShown: false }} />;)
+    </ThemeProvider>
+  )
 }
 export default Index_Layout;

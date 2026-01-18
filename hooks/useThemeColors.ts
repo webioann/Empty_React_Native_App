@@ -1,14 +1,43 @@
 import { Colors } from "@/constants/Colors";
-import { useColorScheme } from 'react-native';
+import type { ColorsList } from "@/types/colors.types";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useEffect, useState } from "react";
+import { Appearance, useColorScheme } from 'react-native';
 
-type theme = 'light' | 'dark'
-type schema = theme | null
+export const  useThemeColors = () => {
+    const initialTheme = Colors.light;
+    const [theme, setTheme] = useState<ColorsList>(initialTheme)
+    const colorScheme  = useColorScheme()
+    const storageName = 'theme';
 
+    useEffect(() => {
+        const getTheme = async() => {
+            const storedTheme = await AsyncStorage.getItem( storageName ); 
+            if( storedTheme === 'dark' ) { 
+                Appearance.setColorScheme('dark')
+                setTheme(Colors.dark)
+            }
+            if( storedTheme === 'light' ) { 
+                Appearance.setColorScheme('light')
+                setTheme(Colors.light)
+            }
+            if( storedTheme === null && colorScheme === 'light') {
+                await AsyncStorage.setItem(storageName, 'light')
+                setTheme(Colors.light)
+            }
+            if( storedTheme === null && colorScheme === 'dark') {
+                await AsyncStorage.setItem(storageName, 'dark')
+                setTheme(Colors.dark)
+            }
+            else { 
+                await AsyncStorage.setItem(storageName, 'light')
+                Appearance.setColorScheme('light')
+                setTheme(Colors.light)
+            }
+        }
+        getTheme();
+    }, [])
 
-const useColors = () => {
-    const mode = useColorScheme() as schema
-    let themeMode
-    if( mode !== null ) themeMode = Colors[mode]
-    return themeMode
-}
-export default useColors;
+    return { ...theme }
+};
+

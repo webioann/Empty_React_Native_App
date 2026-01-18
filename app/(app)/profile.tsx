@@ -1,4 +1,4 @@
-import { Appearance, StyleSheet, Switch, Text, useColorScheme, View } from 'react-native';
+import { StyleSheet, Text, useColorScheme, View } from 'react-native';
 import ColoredList from "../../components/ColoredList";
 import SafeAreaScreen from "../../components/SafeAreaScreen";
 
@@ -8,13 +8,6 @@ export default function Profile_Screen() {
         <SafeAreaScreen>
             <View >
                 <Text>Current Theme: {colorScheme}</Text>
-                {/* Toggle the color scheme */}
-                <Switch
-                    value={colorScheme === 'dark'}
-                    onChange={() => {
-                    Appearance.setColorScheme(colorScheme === 'dark' ? 'light' : 'dark');
-                    }}
-                />
                 </View>
             <ColoredList color="green" />
         </SafeAreaScreen>
