@@ -14,7 +14,7 @@ const SafeAreaScreen = ({ children }: { children: React.ReactNode }) => {
             paddingBottom: insets.bottom + 5, 
             flex: 1, 
             backgroundColor: theme.bg_main,
-            paddingHorizontal: 10
+            paddingHorizontal: 20
             }}>
             <StatusBar  barStyle={ 
                 device_theme === 'dark' ? 'light-content' : 'dark-content' as StatusBarStyle} 

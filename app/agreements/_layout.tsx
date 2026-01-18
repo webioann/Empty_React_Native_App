@@ -1,18 +1,17 @@
+import { useTheme } from '@/context/ThemeContext';
 import { Stack } from "expo-router";
 import { StyleSheet, View } from "react-native";
 
 function Agreement_Layout() {
-    const bg_colors = 'white'
-    const tx_color = 'black'
+    const theme = useTheme()
+    
     return (
-        <View style={styles.container}>
+        <View style={[styles.container]}>
             <Stack 
                 screenOptions={{
-                    headerStyle: {
-                        backgroundColor: bg_colors,
-                        
-                    },
-                    headerTintColor: tx_color,
+                    headerStyle: { backgroundColor: theme.bg_main },
+                    headerShadowVisible: false,
+                    headerTintColor: theme.text_main,
                     headerTitleStyle: {
                         fontWeight: '600',
                     },
