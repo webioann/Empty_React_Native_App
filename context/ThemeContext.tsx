@@ -4,18 +4,14 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { useColorScheme } from 'react-native';
 
-type contextValue = {
-    theme: ColorsList
-    toggleTheme: () => Promise<void>
-}
 
-export const ThemeContext = createContext<contextValue | null>(null);
+export const ThemeContext = createContext<ColorsList>(Colors.light);
 export const useTheme = () => useContext(ThemeContext);
 
 const THEME_STORAGE_KEY = '@app_theme';
 
 const ThemeProvider = ({ children }: {children: React.ReactNode}) => {
-    const [theme, setTheme] = useState<ColorsList>(Colors.light); 
+    const [theme, setTheme] = useState<ColorsList>({...Colors.light}); 
     const device_theme = useColorScheme()
 
     useEffect(() => {
@@ -23,36 +19,39 @@ const ThemeProvider = ({ children }: {children: React.ReactNode}) => {
             try {
                 const savedTheme = await AsyncStorage.getItem(THEME_STORAGE_KEY);
                 if (savedTheme === 'light') {
-                    setTheme(Colors.light);                
+                    setTheme({...Colors.light});                
                 }
                 if (savedTheme === 'dark') { 
-                    setTheme(Colors.dark);                
+                    setTheme({...Colors.dark});                
                 }
-                if (savedTheme === null) {  
-                    setTheme(Colors.light);                
+                if (savedTheme === null && device_theme === 'light') {  
+                    setTheme({...Colors.light});
                 }
+                if (savedTheme === null && device_theme === 'dark') {  
+                    setTheme({...Colors.dark});
+                }
+
             } catch (error) {
                 console.error('Failed to load theme from storage', error);
             }
         };
 
         loadTheme();
-    }, []);
-
+    }, [device_theme]);
     // Function to toggle theme and save to AsyncStorage
-    const toggleTheme = async () => {
-        const newTheme = device_theme === 'light' ? 'dark' : 'light';
-        try {
-            await AsyncStorage.setItem(THEME_STORAGE_KEY, newTheme);
-            setTheme(Colors[newTheme]);
-        } catch (e) {
-            console.error('Failed to save theme to storage', e);
-        }
-    };
-    const valueProps: contextValue = { theme, toggleTheme }
+    // const toggleTheme = async () => {
+    //     const newTheme = device_theme === 'light' ? 'dark' : 'light';
+    //     try {
+    //         await AsyncStorage.setItem(THEME_STORAGE_KEY, newTheme);
+    //         setTheme(Colors[newTheme]);
+    //     } catch (e) {
+    //         console.error('Failed to save theme to storage', e);
+    //     }
+    // };
+    // const valueProps: contextValue = { theme, toggleTheme }
 
     return (
-        <ThemeContext.Provider value={ valueProps }>
+        <ThemeContext.Provider value={ theme }>
             {children}
         </ThemeContext.Provider>
     );

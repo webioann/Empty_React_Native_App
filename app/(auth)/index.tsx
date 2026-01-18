@@ -1,22 +1,21 @@
 import SafeAreaScreen from '@/components/SafeAreaScreen';
+import ThemeSwitcher from '@/components/ThemeSwitcher';
+import { useTheme } from '@/context/ThemeContext';
 import { Link } from 'expo-router';
 import React from 'react';
-import { Appearance, Image, StyleSheet, Switch, Text, TouchableOpacity, useColorScheme } from 'react-native';
-// import { useThemeColors } from '../../hooks/useThemeColors';
+import { Image, StyleSheet, Text, TouchableOpacity } from 'react-native';
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 const Auth_Screen = () => {
-    // const theme = useThemeColors()
-    const scheme = useColorScheme()
+    const theme = useTheme()
+    const data = AsyncStorage.getItem('theme')
     
     return (
         <SafeAreaScreen>
-            <Text>{scheme}</Text>
-            <Switch
-                    value={scheme === 'dark'}
-                    onChange={() => {
-                    Appearance.setColorScheme(scheme === 'dark' ? 'light' : 'dark');
-                    }}
-                />
+            <Text>{theme?.bg_main}{data}</Text>
+            <ThemeSwitcher/>
             <Image 
                 source={require('@/assets/images/auth-image.png')} 
                 style={styles.auth_image}
@@ -24,7 +23,7 @@ const Auth_Screen = () => {
             />
             {/* oAuth Google authentication button */}
             <Link href={'../(app)/'} asChild >
-                <TouchableOpacity style={[styles.auth_button, { borderColor: '#bbbbbb'}]}>
+                <TouchableOpacity style={[styles.auth_button, { borderColor: '#bbbbbb', flex: 1}]}>
                     <Image source={require('@/assets/images/react-logo.png')} style={styles.btn_image} />
                     <Text style={{ fontWeight: 'bold', color: 'red', fontSize: 16 }}>
                         Continue with Google
@@ -32,7 +31,7 @@ const Auth_Screen = () => {
                 </TouchableOpacity>
             </Link>
             {/* oAuth Github authentication button */}
-            <TouchableOpacity style={[styles.auth_button, { borderColor: '#bbbbbb'}]}>
+            <TouchableOpacity style={[styles.auth_button, { borderColor: theme.green}]}>
                 <Image source={require('@/assets/images/react-logo.png')} style={styles.btn_image} />
                 <Text style={{ fontWeight: 'bold', color: 'grey', fontSize: 16 }}>
                     Continue with Github

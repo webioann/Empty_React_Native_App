@@ -8,16 +8,10 @@ export default function Profile_Screen() {
         <SafeAreaScreen>
             <View >
                 <Text>Current Theme: {colorScheme}</Text>
-                </View>
+            </View>
             <ColoredList color="green" />
         </SafeAreaScreen>
     );
 }
 const styles = StyleSheet.create({
-    header: {
-        fontSize: 30,
-        fontWeight: "bold",
-        marginBottom: 20,
-        color: "blue",
-    }
 });

@@ -10,10 +10,4 @@ export default function Cart_Screen() {
     );
 }
 const styles = StyleSheet.create({
-    header: {
-        fontSize: 30,
-        fontWeight: "bold",
-        marginBottom: 20,
-        color: "blue",
-    }
 });
