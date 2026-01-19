@@ -26,7 +26,7 @@ export default function Shop_Screen() {
                     <Text style={[styles.page, {color: theme.text_main}]}>Shop</Text>
                     <View style={{flexDirection: 'row'}}>
                         <Text style={{color: theme.text_second}}>Browse </Text>
-                        <Text style={{color: theme.text_second}}>{currentCategory.toLowerCase()} </Text>
+                        <Text style={{color: theme.text_main}}>{currentCategory.toLowerCase()} </Text>
                         <Text style={{color: theme.text_second}}>products</Text>
                     </View>
                 </View>
@@ -61,6 +61,7 @@ export default function Shop_Screen() {
                             <TouchableOpacity 
                                 style={[styles.card, {backgroundColor: selected ? theme.yellow : theme.bg_second}]} 
                                 onPress={() => setCurrentCategory(category.name)}
+                                activeOpacity={0.7}
                                 key={category.name}>
                                 { 
                                     category.image 
