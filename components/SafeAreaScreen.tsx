@@ -7,14 +7,14 @@ const SafeAreaScreen = ({ children }: { children: React.ReactNode }) => {
     const insets = useSafeAreaInsets();
     const theme = useTheme()
     const device_theme = useColorScheme()
+    console.log(` INSETS ==> ${insets.top}`);
 
     return (
         <View style={{ 
-            paddingTop: insets.top + 5,
-            paddingBottom: insets.bottom + 5, 
+            paddingTop: insets.top,
             flex: 1, 
             backgroundColor: theme.bg_main,
-            paddingHorizontal: 20
+            padding: 16
             }}>
             <StatusBar  barStyle={ 
                 device_theme === 'dark' ? 'light-content' : 'dark-content' as StatusBarStyle} 
