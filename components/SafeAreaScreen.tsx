@@ -3,11 +3,10 @@ import React from 'react';
 import { StatusBar, StatusBarStyle, View, useColorScheme } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-const SafeAreaScreen = ({ children }: { children: React.ReactNode }) => {
+const SafeAreaView = ({ children }: { children: React.ReactNode }) => {
     const insets = useSafeAreaInsets();
     const theme = useTheme()
     const device_theme = useColorScheme()
-    console.log(` INSETS ==> ${insets.top}`);
 
     return (
         <View style={{ 
@@ -24,5 +23,5 @@ const SafeAreaScreen = ({ children }: { children: React.ReactNode }) => {
     )
 }
 
-export default SafeAreaScreen;
+export default SafeAreaView;
 

@@ -3,7 +3,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { Link } from 'expo-router';
 import { useState } from 'react';
 import { ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
-import SafeAreaScreen from "../../components/SafeAreaScreen";
+import SafeAreaView from "../../components/SafeAreaView";
 
 export default function Shop_Screen() {
     const theme = useTheme();
@@ -19,7 +19,7 @@ export default function Shop_Screen() {
     ];
 
     return (
-        <SafeAreaScreen>
+        <SafeAreaView px={16} inset={true}>
             {/* === HEADER === */}
             <View style={styles.shop_header}>
                 <View >
@@ -66,7 +66,7 @@ export default function Shop_Screen() {
                 <Text>Go Home</Text>
             </Link>
 
-        </SafeAreaScreen>
+        </SafeAreaView>
     );
 }
 const styles = StyleSheet.create({

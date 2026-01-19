@@ -1,4 +1,4 @@
-import SafeAreaScreen from '@/components/SafeAreaScreen';
+import SafeAreaView from '@/components/SafeAreaView';
 import ThemeSwitcher from '@/components/ThemeSwitcher';
 import { useTheme } from '@/context/ThemeContext';
 import { Link } from 'expo-router';
@@ -9,7 +9,7 @@ const Auth_Screen = () => {
     const theme = useTheme()
     
     return (
-        <SafeAreaScreen>
+        <SafeAreaView px={16} inset={true}>
             <Text style={{color: theme.text_main}}>{theme?.bg_main}</Text>
             <ThemeSwitcher/>
             <Image 
@@ -48,7 +48,7 @@ const Auth_Screen = () => {
                     <Text style={{color: theme.blue, fontWeight: '900'}}> Cookie Use .</Text>
                 </Link>
             </View>
-        </SafeAreaScreen>
+        </SafeAreaView>
     )
 }
 

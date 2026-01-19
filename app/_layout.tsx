@@ -4,7 +4,7 @@ import { Stack } from "expo-router";
 function Index_Layout() {
   return (
     <ThemeProvider>
-        <Stack screenOptions={{ headerShown: false }} />;
+      <Stack screenOptions={{ headerShown: false }} />;
     </ThemeProvider>
   )
 }

@@ -1,16 +1,16 @@
 import { StyleSheet, Text, useColorScheme, View } from 'react-native';
 import ColoredList from "../../components/ColoredList";
-import SafeAreaScreen from "../../components/SafeAreaScreen";
+import SafeAreaView from "../../components/SafeAreaView";
 
 export default function Profile_Screen() {
     const colorScheme = useColorScheme(); 
     return (
-        <SafeAreaScreen>
+        <SafeAreaView px={16} inset={true}>
             <View >
                 <Text>Current Theme: {colorScheme}</Text>
             </View>
             <ColoredList color="green" />
-        </SafeAreaScreen>
+        </SafeAreaView>
     );
 }
 const styles = StyleSheet.create({

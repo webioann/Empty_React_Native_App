@@ -1,11 +1,11 @@
 import { StyleSheet, Text } from "react-native";
-import SafeAreaScreen from "../../components/SafeAreaScreen";
+import SafeAreaView from "../../components/SafeAreaView";
 
 export default function Welcome_Screen() {
     return (
-        <SafeAreaScreen>
+        <SafeAreaView px={16} inset={true}>
             <Text style={styles.header}>WELCOME SCREEN</Text>
-        </SafeAreaScreen>
+        </SafeAreaView>
     );
 }
 const styles = StyleSheet.create({

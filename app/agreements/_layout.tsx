@@ -11,10 +11,18 @@ function Agreement_Layout() {
                 headerShadowVisible: false,
                 headerTintColor: theme.text_main,
                 headerTitleStyle: {
-                fontWeight: '600',
-                color: 'red'
-            },
-        }}/>
+                    fontWeight: '600',
+                    color: theme.text_main
+                },
+                headerTitleAlign: 'center'
+            }}
+        >
+            <Stack.Screen name="cookie_use" options={{title: 'Cookie using ...'}} />
+            <Stack.Screen name="privacy" options={{title: 'Privacy police'}} />
+            <Stack.Screen name="terms" options={{title: 'Usage terms'}} />
+
+        </Stack>
+
     );
 }
 export default Agreement_Layout;

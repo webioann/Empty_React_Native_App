@@ -3,6 +3,7 @@ import { Stack } from "expo-router";
 
 function Auth_Layout() {
     const theme = useTheme()
+    
     return <Stack 
         screenOptions={{
             headerStyle: { backgroundColor: theme.bg_main },
@@ -11,6 +12,7 @@ function Auth_Layout() {
             headerTitleStyle: {
                 fontWeight: '600',
             },
-        }} />;
+        }} 
+    />;
 }
 export default Auth_Layout;

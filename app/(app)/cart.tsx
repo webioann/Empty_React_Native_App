@@ -1,12 +1,12 @@
 import { StyleSheet } from "react-native";
 import ColoredList from "../../components/ColoredList";
-import SafeAreaScreen from "../../components/SafeAreaScreen";
+import SafeAreaView from "../../components/SafeAreaView";
 
 export default function Cart_Screen() {
     return (
-        <SafeAreaScreen>
+        <SafeAreaView px={16} inset={true}>
             <ColoredList color="blue" />
-        </SafeAreaScreen>
+        </SafeAreaView>
     );
 }
 const styles = StyleSheet.create({
