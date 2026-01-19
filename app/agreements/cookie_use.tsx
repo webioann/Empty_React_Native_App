@@ -1,15 +1,29 @@
+import CheckBox from '@/components/CheckBox';
 import SafeAreaView from '@/components/SafeAreaView';
+import { loremSmallText } from '@/constants/lorem_small';
 import { useTheme } from '@/context/ThemeContext';
 import React from 'react';
-import { ScrollView, StyleSheet, Text } from 'react-native';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
 const Cookie_Use_Screen = () => {
     const theme = useTheme()
+    const [checked, setChecked] = React.useState<boolean>(false)
+
+    const checker = () => { setChecked((prev) => !prev) }
 
     return (
         <SafeAreaView px={24} inset={false}>
             <ScrollView  contentContainerStyle={{paddingBottom: 40}}>
-                <Text style={[{color: theme.text_main}, styles.article_text]}>COOKIE USE POLICY === But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?</Text>
+                <Text style={[{color: theme.text_main}, styles.article_text]}>
+                    {loremSmallText}
+                </Text>
+                <View style={[styles.separator, {backgroundColor: theme.text_main}]}/>
+                <View style={styles.accept_terms}>
+                    <CheckBox isChecked={checked} size={24} color={theme.blue} checker={checker}/>
+                    <Text style={{color: theme.text_main, fontSize: 20, marginLeft: 20}}>
+                        I agree with cookie usage. 
+                    </Text>
+                </View>
             </ScrollView>
         </SafeAreaView >
     )
@@ -20,5 +34,21 @@ const styles = StyleSheet.create({
     article_text: {
         lineHeight: 24,
         fontSize: 16
+    },
+    accept_terms:{
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+        paddingVertical: 16,
+        position: 'sticky',
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0
+
+    },
+    separator: {
+        height: StyleSheet.hairlineWidth,
+        marginTop: 20
     }
 })
