@@ -2,13 +2,13 @@ import { useTheme } from '@/context/ThemeContext';
 import { Ionicons } from '@expo/vector-icons';
 import { Link } from 'expo-router';
 import { useState } from 'react';
-import { ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import SafeAreaView from "../../components/SafeAreaView";
 
 export default function Shop_Screen() {
     const theme = useTheme();
     const [query, setQuery] = useState("")
-    const [category, setCategory] = useState("All")
+    const [currentCategory, setCurrentCategory] = useState("All")
 
     const CATEGORIES = [
         { name: "All", icon: "grid-outline" as const },
@@ -24,7 +24,11 @@ export default function Shop_Screen() {
             <View style={styles.shop_header}>
                 <View >
                     <Text style={[styles.page, {color: theme.text_main}]}>Shop</Text>
-                    <Text style={{color: theme.text_second}}>Browse all products</Text>
+                    <View style={{flexDirection: 'row'}}>
+                        <Text style={{color: theme.text_second}}>Browse </Text>
+                        <Text style={{color: theme.text_second}}>{currentCategory.toLowerCase()} </Text>
+                        <Text style={{color: theme.text_second}}>products</Text>
+                    </View>
                 </View>
                 <TouchableOpacity 
                     style={[styles.options_btn, {backgroundColor: theme.bg_second}]}
@@ -47,17 +51,25 @@ export default function Shop_Screen() {
             {/* === CATEGORY === */}
             <View style={styles.category}>
                 <ScrollView
-                    horizontal={true}
+                    contentContainerStyle={styles.category}
                     showsHorizontalScrollIndicator={false}
-                    contentContainerStyle={{paddingHorizontal: 40}}
-                > 
+                    horizontal={true}
+                    >
                     {CATEGORIES.map((category) => {
-                        const d = ''
+                        const selected = currentCategory === category.name;
                         return (
-                            <View key={category.name}></View>
+                            <TouchableOpacity 
+                                style={[styles.card, {backgroundColor: selected ? theme.yellow : theme.bg_second}]} 
+                                onPress={() => setCurrentCategory(category.name)}
+                                key={category.name}>
+                                { 
+                                    category.image 
+                                    ? <Image source={category.image} resizeMode='contain' style={styles.card_image}/> 
+                                    : <Ionicons name={category.icon} size={50} color={selected ? theme.text_main : theme.text_second} />
+                                }
+                            </TouchableOpacity>
                         )
-                    })}
-
+                    })}    
                 </ScrollView>
             </View>
 
@@ -69,6 +81,24 @@ export default function Shop_Screen() {
         </SafeAreaView>
     );
 }
+                {/* <FlatList 
+                    data={CATEGORIES}
+                    keyExtractor={item => item.name}
+                    ItemSeparatorComponent={() => <View style={{width: 12}}/>}
+                    style={{paddingHorizontal: 30}}
+                    horizontal={true}
+                    renderItem={({item}) => (
+                        <View style={[styles.card, {backgroundColor: theme.bg_second}]}>
+                            { 
+                                item.image 
+                                ? <Image source={item.image} style={styles.card_image}/> 
+                                : <Ionicons name={item.icon} size={24} color={theme.purple} />
+                            }
+                        </View>
+                    )}
+                    
+                /> */}
+
 const styles = StyleSheet.create({
     // HEADER ====
     shop_header: {
@@ -104,6 +134,21 @@ const styles = StyleSheet.create({
     },
     // CATEGORY ====
     category: {
+        // paddingHorizontal: 40,
+        // paddingVertical: 8
+    },
+    card: {
+        width: 80,
+        height: 80,
+        borderRadius: 18,
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 10, 
+        marginRight: 16
+    },
+    card_image: {
+        width: 60,
+        height: 60,
 
     }
 });
