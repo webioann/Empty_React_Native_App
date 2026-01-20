@@ -1,8 +1,9 @@
+import { mockProductData } from '@/constants/mock_product_data';
 import { useTheme } from '@/context/ThemeContext';
 import { Ionicons } from '@expo/vector-icons';
 import { Link } from 'expo-router';
 import { useState } from 'react';
-import { Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { FlatList, Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import SafeAreaView from "../../components/SafeAreaView";
 
 export default function Shop_Screen() {
@@ -20,85 +21,89 @@ export default function Shop_Screen() {
 
     return (
         <SafeAreaView px={16} inset={true}>
+            <ScrollView
+            horizontal={false}
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={{paddingBottom: 40}}
+            >
             {/* === HEADER === */}
-            <View style={styles.shop_header}>
-                <View >
-                    <Text style={[styles.page, {color: theme.text_main}]}>Shop</Text>
-                    <View style={{flexDirection: 'row'}}>
-                        <Text style={{color: theme.text_second}}>Browse </Text>
-                        <Text style={{color: theme.text_main}}>{currentCategory.toLowerCase()} </Text>
-                        <Text style={{color: theme.text_second}}>products</Text>
+                <View style={styles.shop_header}>
+                    <View >
+                        <Text style={[styles.page, {color: theme.text_main}]}>Shop</Text>
+                        <View style={{flexDirection: 'row'}}>
+                            <Text style={{color: theme.text_second}}>Browse </Text>
+                            <Text style={{color: theme.text_main}}>{currentCategory.toLowerCase()} </Text>
+                            <Text style={{color: theme.text_second}}>products</Text>
+                        </View>
                     </View>
+                    <TouchableOpacity 
+                        style={[styles.options_btn, {backgroundColor: theme.bg_second}]}
+                        activeOpacity={0.6}
+                        >
+                        <Ionicons name="options-outline" size={24} color={theme.text_main} />
+                    </TouchableOpacity>
                 </View>
-                <TouchableOpacity 
-                    style={[styles.options_btn, {backgroundColor: theme.bg_second}]}
-                    activeOpacity={0.6}
-                    >
-                    <Ionicons name="options-outline" size={24} color={theme.text_main} />
-                </TouchableOpacity>
-            </View>
-            {/* === SEARCH BAR === */}
-            <View style={[styles.searchbar, {backgroundColor: theme.bg_second}]}>
-                <Ionicons name="search" size={22} color={theme.text_main} />
-                <TextInput
-                    placeholder='Search for products ...'
-                    placeholderTextColor={theme.text_second}
-                    style={[styles.input, {color: theme.text_main}]}
-                    value={query}
-                    onChangeText={setQuery}
-                />
-            </View>
-            {/* === CATEGORY === */}
-            <View style={styles.category}>
-                <ScrollView
-                    contentContainerStyle={styles.category}
-                    showsHorizontalScrollIndicator={false}
-                    horizontal={true}
-                    >
-                    {CATEGORIES.map((category) => {
-                        const selected = currentCategory === category.name;
-                        return (
-                            <TouchableOpacity 
-                                style={[styles.card, {backgroundColor: selected ? theme.yellow : theme.bg_second}]} 
-                                onPress={() => setCurrentCategory(category.name)}
-                                activeOpacity={0.7}
-                                key={category.name}>
-                                { 
-                                    category.image 
-                                    ? <Image source={category.image} resizeMode='contain' style={styles.card_image}/> 
-                                    : <Ionicons name={category.icon} size={50} color={selected ? theme.text_main : theme.text_second} />
-                                }
-                            </TouchableOpacity>
-                        )
-                    })}    
-                </ScrollView>
-            </View>
-
-            {/* =================================================================================================== */}
-            <Link href={'../(auth)/'} asChild style={{marginTop: 400, padding: 15, backgroundColor: 'blue', flex: 0}}>
-                <Text>Go Home</Text>
-            </Link>
-
-        </SafeAreaView>
-    );
-}
-                {/* <FlatList 
-                    data={CATEGORIES}
+                {/* === SEARCH BAR === */}
+                <View style={[styles.searchbar, {backgroundColor: theme.bg_second}]}>
+                    <Ionicons name="search" size={22} color={theme.text_main} />
+                    <TextInput
+                        placeholder='Search for products ...'
+                        placeholderTextColor={theme.text_second}
+                        style={[styles.input, {color: theme.text_main}]}
+                        value={query}
+                        onChangeText={setQuery}
+                    />
+                </View>
+                {/* === CATEGORY === */}
+                <View style={styles.category}>
+                    <ScrollView
+                        contentContainerStyle={styles.category}
+                        showsHorizontalScrollIndicator={false}
+                        horizontal={true}
+                        >
+                        {CATEGORIES.map((category) => {
+                            const selected = currentCategory === category.name;
+                            return (
+                                <TouchableOpacity 
+                                    style={[styles.card, {backgroundColor: selected ? theme.yellow : theme.bg_second}]} 
+                                    onPress={() => setCurrentCategory(category.name)}
+                                    activeOpacity={0.7}
+                                    key={category.name}>
+                                    { 
+                                        category.image 
+                                        ? <Image source={category.image} resizeMode='contain' style={styles.card_image}/> 
+                                        : <Ionicons name={category.icon} size={50} color={selected ? theme.text_main : theme.text_second} />
+                                    }
+                                </TouchableOpacity>
+                            )
+                        })}    
+                    </ScrollView>
+                </View>
+                {/* === PRODUCTS LIST === */}
+                <FlatList 
+                    data={mockProductData}
                     keyExtractor={item => item.name}
                     ItemSeparatorComponent={() => <View style={{width: 12}}/>}
                     style={{paddingHorizontal: 30}}
-                    horizontal={true}
                     renderItem={({item}) => (
                         <View style={[styles.card, {backgroundColor: theme.bg_second}]}>
-                            { 
-                                item.image 
-                                ? <Image source={item.image} style={styles.card_image}/> 
-                                : <Ionicons name={item.icon} size={24} color={theme.purple} />
-                            }
+                            {/* {item.images[0] && <Image source={item.images[0]} style={styles.card_image}/> } */}
+                            <Image source={{uri: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500"}} style={styles.card_image}/> 
                         </View>
                     )}
-                    
-                /> */}
+                /> 
+
+
+
+                {/* =================================================================================================== */}
+                <Link href={'../(auth)/'} asChild style={{marginTop: 400, padding: 15, backgroundColor: 'blue', flex: 0}}>
+                    <Text>Go Home</Text>
+                </Link>
+                {/* ======================================================================================================= */}
+            </ScrollView>
+        </SafeAreaView>
+    );
+}
 
 const styles = StyleSheet.create({
     // HEADER ====

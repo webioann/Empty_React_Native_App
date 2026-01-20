@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 const ProductCard = () => {
     return (
-        <View>
+        <View >
         <Text>ProductCard</Text>
         </View>
     )
@@ -11,4 +11,9 @@ const ProductCard = () => {
 
 export default ProductCard;
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    card: {
+        width: '48%',
+
+    }
+})
