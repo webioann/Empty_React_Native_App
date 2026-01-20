@@ -53,5 +53,4 @@ const styles = StyleSheet.create({
         height: StyleSheet.hairlineWidth,
         marginTop: 20
     }
-
 })

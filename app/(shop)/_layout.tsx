@@ -5,7 +5,6 @@ import { Tabs } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function App_Layout() {
-  
   const insets = useSafeAreaInsets();
   // PROTECTION ROUTE
   const { isSignedIn } = fakeAuthHook();
@@ -29,7 +28,7 @@ export default function App_Layout() {
           <BlurView
             intensity={80}
             tint="dark"
-            style={ {position: "absolute", top: 0, right: 0, left: 0, bottom: 0 }}
+            style={{position: "absolute", top: 0, right: 0, left: 0, bottom: 0 }}
           />
         ),
         tabBarLabelStyle: {
@@ -46,7 +45,6 @@ export default function App_Layout() {
         tabBarIcon: () => (<Ionicons name="grid" size={24} color="red" />)
       }} 
     />
-
     <Tabs.Screen 
       name="cart" 
       options={{ 

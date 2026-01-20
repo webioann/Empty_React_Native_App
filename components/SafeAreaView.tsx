@@ -1,6 +1,6 @@
 import { useTheme } from '@/context/ThemeContext';
 import React from 'react';
-import { StatusBar, StatusBarStyle, StyleSheet, View, useColorScheme } from 'react-native';
+import { StatusBar, StatusBarStyle, View, useColorScheme } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 type PropsType = {
@@ -10,9 +10,9 @@ type PropsType = {
 }
 
 const SafeAreaView = ({ children, px, inset }: PropsType) => {
-        const insets = useSafeAreaInsets();
-        const theme = useTheme()
-        const device_theme = useColorScheme()
+    const insets = useSafeAreaInsets();
+    const theme = useTheme()
+    const device_theme = useColorScheme()
     
     return (
         <View style={{
@@ -30,6 +30,5 @@ const SafeAreaView = ({ children, px, inset }: PropsType) => {
     )
 }
 
-export default SafeAreaView
+export default SafeAreaView;
 
-const styles = StyleSheet.create({})

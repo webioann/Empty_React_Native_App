@@ -4,7 +4,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { useColorScheme } from 'react-native';
 
-
 export const ThemeContext = createContext<ColorsList>(Colors.light);
 export const useTheme = () => useContext(ThemeContext);
 
@@ -30,25 +29,12 @@ const ThemeProvider = ({ children }: {children: React.ReactNode}) => {
                 if (savedTheme === null && device_theme === 'dark') {  
                     setTheme({...Colors.dark});
                 }
-
             } catch (error) {
                 console.error('Failed to load theme from storage', error);
             }
         };
-
         loadTheme();
     }, [device_theme]);
-    // Function to toggle theme and save to AsyncStorage
-    // const toggleTheme = async () => {
-    //     const newTheme = device_theme === 'light' ? 'dark' : 'light';
-    //     try {
-    //         await AsyncStorage.setItem(THEME_STORAGE_KEY, newTheme);
-    //         setTheme(Colors[newTheme]);
-    //     } catch (e) {
-    //         console.error('Failed to save theme to storage', e);
-    //     }
-    // };
-    // const valueProps: contextValue = { theme, toggleTheme }
 
     return (
         <ThemeContext.Provider value={ theme }>

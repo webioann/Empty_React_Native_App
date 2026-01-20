@@ -1,11 +1,11 @@
 import React from 'react'
-import { Appearance, StyleSheet, Switch, useColorScheme, View } from 'react-native'
+import { Appearance, Switch, useColorScheme, View } from 'react-native'
 
 const ThemeSwitcher = () => {
     const scheme = useColorScheme()
 
     return (
-        <View style={styles.switch_wrapper}>
+        <View >
             <Switch
                 value={scheme === 'dark'}
                 onChange={() => {
@@ -18,8 +18,3 @@ const ThemeSwitcher = () => {
 
 export default ThemeSwitcher;
 
-const styles = StyleSheet.create({
-    switch_wrapper: {
-
-    }
-})

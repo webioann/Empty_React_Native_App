@@ -4,7 +4,6 @@ import { StyleSheet, TouchableOpacity } from 'react-native';
 
 type Props = { productId: string }
 
-
 const WishListHeart = ({productId}: Props) => {
     const [inList, setInList] = useState(false)
     const wishList = ["idaaa77", "idaaa70", "idaaa74"]
@@ -12,18 +11,19 @@ const WishListHeart = ({productId}: Props) => {
     const isInWishlist = (productId: string) => {
         return wishList?.some((item) => item === productId) ?? false;
     };
+
     useEffect(() => {
         setInList(() => isInWishlist(productId))
     }, [])
     
-
     const addOrRemove = () => {
 
-    }
+    };
 
     return (
         <TouchableOpacity
             style={styles.wish_list}
+            activeOpacity={0.7}
             onPress={() => addOrRemove()}
             >
             { inList ? <Entypo name="heart" size={24} color="red" /> : <Entypo name="heart-outlined" size={24} color="red" /> }
