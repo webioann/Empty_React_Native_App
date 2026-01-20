@@ -14,10 +14,11 @@ export interface ProductType {
 
 export interface User {
     _id: string;
-    clerkId: string;
+    username: string;
     email: string;
-    name: string;
     imageUrl: string;
+    role: 'user' | 'admin' | 'owner'
+    authProviderId: string;
     addresses: Address[];
     wishlist: string[];
     createdAt: string;

@@ -11,32 +11,32 @@ export default function App_Layout() {
   // if (!isSignedIn) return <Redirect href="./(auth)/" />;
   
   return <Tabs screenOptions={{
-        tabBarActiveTintColor: "#1DB954",
-        tabBarInactiveTintColor: "#B3B3B3",
-        tabBarStyle: {
-          position: "absolute",
-          backgroundColor: "transparent",
-          borderTopWidth: 0,
-          height: 32 + insets.bottom,
-          paddingTop: 2,
-          marginHorizontal: 60,
-          marginBottom: insets.bottom,
-          borderRadius: 24,
-          overflow: "hidden",
-        },
-        tabBarBackground: () => (
-          <BlurView
-            intensity={80}
-            tint="dark"
-            style={{position: "absolute", top: 0, right: 0, left: 0, bottom: 0 }}
-          />
-        ),
-        tabBarLabelStyle: {
-          fontSize: 12,
-          fontWeight: 600,
-        },
-        headerShown: false,
-      }}
+      tabBarActiveTintColor: "#1DB954",
+      tabBarInactiveTintColor: "#B3B3B3",
+      tabBarStyle: {
+        position: "absolute",
+        backgroundColor: "transparent",
+        borderTopWidth: 0,
+        height: 32 + insets.bottom,
+        paddingTop: 2,
+        marginHorizontal: 60,
+        marginBottom: insets.bottom,
+        borderRadius: 24,
+        overflow: "hidden",
+      },
+      tabBarBackground: () => (
+        <BlurView
+          intensity={80}
+          tint="dark"
+          style={{position: "absolute", top: 0, right: 0, left: 0, bottom: 0 }}
+        />
+      ),
+      tabBarLabelStyle: {
+        fontSize: 12,
+        fontWeight: 600,
+      },
+      headerShown: false,
+    }}
   >
     <Tabs.Screen 
       name="index"
