@@ -1,3 +1,4 @@
+import ProductCard from '@/components/ProductCard';
 import { mockProductData } from '@/constants/mock_product_data';
 import { useTheme } from '@/context/ThemeContext';
 import { Ionicons } from '@expo/vector-icons';
@@ -65,7 +66,7 @@ export default function Shop_Screen() {
                             const selected = currentCategory === category.name;
                             return (
                                 <TouchableOpacity 
-                                    style={[styles.card, {backgroundColor: selected ? theme.yellow : theme.bg_second}]} 
+                                    style={[styles.category_card, {backgroundColor: selected ? theme.yellow : theme.bg_second}]} 
                                     onPress={() => setCurrentCategory(category.name)}
                                     activeOpacity={0.7}
                                     key={category.name}>
@@ -83,20 +84,18 @@ export default function Shop_Screen() {
                 <FlatList 
                     data={mockProductData}
                     keyExtractor={item => item.name}
-                    ItemSeparatorComponent={() => <View style={{width: 12}}/>}
-                    style={{paddingHorizontal: 30}}
-                    renderItem={({item}) => (
-                        <View style={[styles.card, {backgroundColor: theme.bg_second}]}>
-                            {/* {item.images[0] && <Image source={item.images[0]} style={styles.card_image}/> } */}
-                            <Image source={{uri: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500"}} style={styles.card_image}/> 
-                        </View>
-                    )}
+                    horizontal={false}
+                    numColumns={2}
+                    columnWrapperStyle={{ justifyContent: "space-between" }}
+                    contentContainerStyle={{gap: 16, marginTop: 24}}
+                    renderItem={(item) => (<ProductCard product={item.item}/>)}
+                    scrollEnabled={false}
                 /> 
 
 
 
                 {/* =================================================================================================== */}
-                <Link href={'../(auth)/'} asChild style={{marginTop: 400, padding: 15, backgroundColor: 'blue', flex: 0}}>
+                <Link href={'../(auth)/'} asChild style={{marginTop: 40, padding: 15, backgroundColor: 'blue', flex: 0}}>
                     <Text>Go Home</Text>
                 </Link>
                 {/* ======================================================================================================= */}
@@ -143,7 +142,7 @@ const styles = StyleSheet.create({
         // paddingHorizontal: 40,
         // paddingVertical: 8
     },
-    card: {
+    category_card: {
         width: 80,
         height: 80,
         borderRadius: 18,
