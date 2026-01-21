@@ -95,7 +95,7 @@ export default function Shop_Screen() {
 
 
                 {/* =================================================================================================== */}
-                <Link href={'../(auth)/'} asChild style={{marginTop: 40, padding: 15, backgroundColor: 'blue', flex: 0}}>
+                <Link href={'../(auth)/'} asChild style={{marginTop: 40, padding: 15, backgroundColor: theme.blue, flex: 0}}>
                     <Text>Go Home</Text>
                 </Link>
                 {/* ======================================================================================================= */}

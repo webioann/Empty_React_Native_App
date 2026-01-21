@@ -18,7 +18,7 @@ const Auth_Screen = () => {
                 resizeMode='contain'
             />
             {/* oAuth Google authentication button */}
-            <Link href={'../(app)/'} asChild  style={[styles.auth_button, { borderColor: theme.text_second}]}>
+            <Link href={'../(shop)/'} asChild  style={[styles.auth_button, { borderColor: theme.text_second}]}>
                 <TouchableOpacity >
                     <Image source={require('@/assets/images/react-logo.png')} style={styles.btn_image} />
                     <Text style={{ fontWeight: '500', color: theme.text_main, fontSize: 16 }}>

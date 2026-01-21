@@ -1,11 +1,9 @@
+import ProfileMenuItem from '@/components/ProfileMenuItem';
 import { mockUsers } from '@/constants/mock_user_data';
 import { useTheme } from '@/context/ThemeContext';
 import type { User } from '@/types/pet_api_example.js';
-import { MaterialIcons } from '@expo/vector-icons';
-import { Link } from 'expo-router';
-import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
 import SafeAreaView from "../../components/SafeAreaView";
-
 
 const Profile_Screen = () => {
     const theme = useTheme();
@@ -52,25 +50,30 @@ const Profile_Screen = () => {
                 </View>
                 {/* ===== MAIN CENTRAL SECTION ==== */}
                 <View style={styles.main}>
-                    <Link 
-                        href="../(profile)/addresses" 
-                        style={[styles.main_link, {backgroundColor: theme.bg_second}]}
-                        asChild>
-                        <TouchableOpacity 
-                            // style={{backgroundColor: 'red'}}
-                            activeOpacity={0.7}>
-                            <View style={styles.icon_box}>
-                                <MaterialIcons name="check-circle" size={44} color={theme.red} />
-                            </View>
-                            <Text>Edit Profile</Text>
-                        </TouchableOpacity>    
-                    </Link>
-
-
-                    
-                    <View style={[styles.main_link, {backgroundColor: theme.bg_second}]}></View>
-                    <View style={[styles.main_link, {backgroundColor: theme.bg_second}]}></View>
-                    <View style={[styles.main_link, {backgroundColor: theme.bg_second}]}></View>
+                    <ProfileMenuItem 
+                        pathTo='/profile' 
+                        title='Edit Profile'
+                        iconName='person-outline'
+                        color={theme.blue}
+                    />        
+                    <ProfileMenuItem 
+                        pathTo='/my_orders' 
+                        title='Orders'
+                        iconName='list-outline'
+                        color={theme.green}
+                    />        
+                    <ProfileMenuItem 
+                        pathTo='/addresses' 
+                        title='Addresses'
+                        iconName='location-outline'
+                        color={theme.yellow}
+                    />        
+                    <ProfileMenuItem 
+                        pathTo='/wishlist' 
+                        title='Wishlist'
+                        iconName='heart-outline'
+                        color={theme.red}
+                    />                            
                 </View>
             </ScrollView>
         </SafeAreaView>
