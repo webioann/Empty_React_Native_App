@@ -44,10 +44,9 @@ const Auth_Screen = () => {
                     <Text style={{color: theme.blue, fontWeight: '900'}}> Privacy Policy, </Text>
                 </Link>
                 <Text  style={{color: theme.text_main }}> and </Text>
-                <Text style={{color: theme.blue, fontWeight: '900'}}> Cookie Use .</Text>
-                {/* <Link href="../agreements/cookie_use" asChild>
+                <Link href="../agreements/cookie_use" asChild>
                     <Text style={{color: theme.blue, fontWeight: '900'}}> Cookie Use .</Text>
-                </Link> */}
+                </Link>
 
             </View>
         </SafeAreaView>

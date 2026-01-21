@@ -19,6 +19,7 @@ function Agreement_Layout() {
         >
             <Stack.Screen name="privacy" options={{title: 'Privacy police'}} />
             <Stack.Screen name="terms" options={{title: 'Usage terms'}} />
+            <Stack.Screen name="cookie_use" options={{title: 'Cookie usage terms'}} />
         </Stack>
     );
 }
