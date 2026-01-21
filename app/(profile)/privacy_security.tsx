@@ -13,7 +13,9 @@ const PrivacyAndSecurity_Screen = () => {
     
     return (
         <SafeAreaView px={24} inset={false}>
-            <ScrollView  contentContainerStyle={{paddingBottom: 40}}>
+            <ScrollView 
+                showsVerticalScrollIndicator={false}
+                contentContainerStyle={{paddingBottom: 40}}>
                 <Text>PrivacyAndSecurity_Screen</Text>
                 <Text  style={[{color: theme.text_main}, styles.article_text]}> 
                     {loremText}

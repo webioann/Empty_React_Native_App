@@ -13,7 +13,9 @@ const Cookie_Use_Screen = () => {
 
     return (
         <SafeAreaView px={16} inset={false}>
-            <ScrollView contentContainerStyle={{paddingBottom: 40}}>
+            <ScrollView 
+                showsVerticalScrollIndicator={false}
+                contentContainerStyle={{paddingBottom: 40}}>
                 <Text style={[{color: theme.text_main}, styles.article_text]}>
                     {loremBigText}
                 </Text>
