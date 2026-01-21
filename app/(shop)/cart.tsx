@@ -3,29 +3,35 @@ import SeparationLine from '@/components/SeparationLine';
 import { useTheme } from '@/context/ThemeContext';
 import type { OrderItemType } from '@/types/product.type';
 import { FontAwesome6 } from '@expo/vector-icons';
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { FlatList, ScrollView, StyleSheet, Text, View } from "react-native";
 import SafeAreaView from "../../components/SafeAreaView";
 
 export default function Cart_Screen() {
     const theme = useTheme()
     const currency = '$';
-
+    // MOCK DATA ========================
     const OrderList: OrderItemType[] = [
         {
             productId: "idaaa77",
             productName: "Wireless Bluetooth Headphones Outback",
             price: 149.99,
-            quantity: 2,
+            quantity: 1,
             image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500"
         },
         {
             productId: "idaaa74",
             productName: "Portable Bluetooth Speaker",
             price: 79.99,
-            quantity: 1,
+            quantity: 22,
             image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=500"
         },
     ]
+
+    const itemCounter = (list: OrderItemType[]) => {
+        const count = list.reduce((acc, array) => acc + array.quantity, 0)
+        if( count === 1 ) return `${count} item`
+        if( count > 1 ) return `${count} items`
+    }
 
     return (
         <SafeAreaView px={16} inset={true}>
@@ -37,8 +43,12 @@ export default function Cart_Screen() {
                 <Text style={[styles.page_title, {color: theme.text_main}]}>Cart</Text> 
                 {/* ===== ORDER LIST ========== */}
                 <View style={styles.orders_list}>
-                    <OrderListItem item={OrderList[0]}/>
-                    <OrderListItem item={OrderList[1]}/>
+                    <FlatList
+                        data={OrderList}
+                        renderItem={({item}) => <OrderListItem item={item}/>}
+                        keyExtractor={item => item.productId}
+                        horizontal={false}
+                    />
                 </View>
                 {/* ===== SUMMARY =========== */}
                 <View style={[styles.summary, {backgroundColor: theme.bg_second}]}>
@@ -68,7 +78,9 @@ export default function Cart_Screen() {
                 <View style={{flexDirection: 'row'}}>
                     <View style={{flex: 1, flexDirection: 'row', gap: 12}}>
                         <FontAwesome6 name="cart-shopping" size={16} color={theme.green} />
-                        <Text style={{color: theme.text_second}}>3 items</Text>
+                        <Text style={{color: theme.text_second}}>
+                            {itemCounter(OrderList)}
+                        </Text>
                     </View>
                     <Text style={{color: theme.text_main, fontSize: 16, fontWeight: '700'}}>{currency}&nbsp;344.77</Text>
                 </View>

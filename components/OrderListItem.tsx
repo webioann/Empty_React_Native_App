@@ -13,6 +13,11 @@ const OrderListItem = ({item}: {item: OrderItemType}) => {
         <View style={[styles.order_item, {backgroundColor: theme.bg_second}]}>
             <View style={styles.image}>
                 <Image source={{uri: item.image}} resizeMode='cover' style={{flex: 1}}/>
+                <View style={[styles.img_badge, {backgroundColor: theme.green}]}>
+                    <Text style={{fontSize: 12, fontWeight: '700'}}>
+                        x&nbsp;{item.quantity}
+                    </Text>
+                </View>
             </View>
             <View style={[styles.main_info, {gap: 6}]}>
                 <Text style={{color: theme.text_main, fontWeight: '700', fontSize: 16, lineHeight: 20}}>{item.productName}</Text>
@@ -68,7 +73,17 @@ const styles = StyleSheet.create({
         height: 100,
         borderRadius: 8,
         overflow: 'hidden',
-        marginRight: 16
+        marginRight: 16,
+        position: 'relative'
+    },
+    img_badge: {
+        position: 'absolute',
+        top: 4,
+        right: 4,
+        height: 16,
+        paddingHorizontal: 6,
+        // padding: 4,
+        borderRadius: 8
     },
     main_info: {
         flex:1,
