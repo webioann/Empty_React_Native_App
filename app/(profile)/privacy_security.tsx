@@ -1,17 +1,57 @@
-import { StyleSheet, Text } from "react-native";
-import SafeAreaView from "../../components/SafeAreaView";
+import CheckBox from '@/components/CheckBox';
+import SafeAreaView from '@/components/SafeAreaView';
+import { useTheme } from '@/context/ThemeContext';
+import { loremText } from '@/MOCK/lorem';
+import { useState } from 'react';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
-export default function Privacy_Security_Screen() {
+const PrivacyAndSecurity_Screen = () => {
+    const theme = useTheme()
+    const [checked, setChecked] = useState<boolean>(false)
+
+    const checker = () => { setChecked((prev) => !prev) }
+    
     return (
-        <SafeAreaView px={16} inset={true}>
-            <Text style={styles.header}>Privacy_Security SCREEN</Text>
+        <SafeAreaView px={24} inset={false}>
+            <ScrollView  contentContainerStyle={{paddingBottom: 40}}>
+                <Text>PrivacyAndSecurity_Screen</Text>
+                <Text  style={[{color: theme.text_main}, styles.article_text]}> 
+                    {loremText}
+                </Text>
+                {/* === CHECKBOX === */}
+                <View style={[styles.separator, {backgroundColor: theme.text_main}]}/>
+                <View style={styles.accept_terms}>
+                    <CheckBox isChecked={checked} size={24} color={theme.blue} checker={checker}/>
+                    <Text style={{color: theme.text_main, fontSize: 20, marginLeft: 20}}>
+                        I agree all terms described here.
+                    </Text>    
+                </View>
+            </ScrollView>
         </SafeAreaView>
-    );
+    )
 }
+export default PrivacyAndSecurity_Screen;
+
 const styles = StyleSheet.create({
-    header: {
-        fontSize: 30,
-        fontWeight: "bold",
-        color: "blue",
+    article_text: {
+        lineHeight: 24,
+        fontSize: 16
+    },
+    accept_terms:{
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+        paddingVertical: 16,
+    },
+    checkbox: {
+        width: 24,
+        height: 24,
+        borderRadius: 4,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    separator: {
+        height: StyleSheet.hairlineWidth,
+        marginTop: 20
     }
-});
+})

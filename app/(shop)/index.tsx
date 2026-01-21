@@ -1,6 +1,6 @@
 import ProductCard from '@/components/ProductCard';
-import { mockProductData } from '@/constants/mock_product_data';
 import { useTheme } from '@/context/ThemeContext';
+import { mockProductData } from '@/MOCK/mock_product_data';
 import { Ionicons } from '@expo/vector-icons';
 import { Link } from 'expo-router';
 import { useState } from 'react';

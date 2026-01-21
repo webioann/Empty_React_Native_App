@@ -1,7 +1,7 @@
 import CheckBox from '@/components/CheckBox';
 import SafeAreaView from '@/components/SafeAreaView';
-import { loremText } from '@/constants/lorem';
 import { useTheme } from '@/context/ThemeContext';
+import { loremText } from '@/MOCK/lorem';
 import { useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 

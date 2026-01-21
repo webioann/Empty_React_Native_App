@@ -17,7 +17,6 @@ function Agreement_Layout() {
                 headerTitleAlign: 'center'
             }}
         >
-            <Stack.Screen name="cookie_use" options={{title: 'Cookie using ...'}} />
             <Stack.Screen name="privacy" options={{title: 'Privacy police'}} />
             <Stack.Screen name="terms" options={{title: 'Usage terms'}} />
         </Stack>

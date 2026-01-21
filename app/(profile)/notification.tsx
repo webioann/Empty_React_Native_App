@@ -1,11 +1,11 @@
 import CheckBox from '@/components/CheckBox';
 import SafeAreaView from '@/components/SafeAreaView';
-import { loremSmallText } from '@/constants/lorem_small';
 import { useTheme } from '@/context/ThemeContext';
+import { loremSmallText } from '@/MOCK/lorem_small';
 import React from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
-const Cookie_Use_Screen = () => {
+const Notification_Screen = () => {
     const theme = useTheme()
     const [checked, setChecked] = React.useState<boolean>(false)
 
@@ -14,6 +14,7 @@ const Cookie_Use_Screen = () => {
     return (
         <SafeAreaView px={24} inset={false}>
             <ScrollView  contentContainerStyle={{paddingBottom: 40}}>
+                <Text>Notification_Screen</Text>
                 <Text style={[{color: theme.text_main}, styles.article_text]}>
                     {loremSmallText}
                 </Text>
@@ -28,7 +29,7 @@ const Cookie_Use_Screen = () => {
         </SafeAreaView >
     )
 }
-export default Cookie_Use_Screen;
+export default Notification_Screen;
 
 const styles = StyleSheet.create({
     article_text: {

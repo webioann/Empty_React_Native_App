@@ -1,4 +1,4 @@
-import { fakeAuthHook } from '@/controllers/auth.controllers/fakeAuth';
+import { fakeAuthHook } from '@/MOCK/auth.controllers/fakeAuth';
 import { FontAwesome6, Ionicons, MaterialIcons } from '@expo/vector-icons';
 import { BlurView } from "expo-blur";
 import { Tabs } from "expo-router";

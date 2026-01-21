@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     main_link: {
         width: '47%', 
         height: 110,
-        borderRadius: 16,
+        borderRadius: 12,
         justifyContent: 'space-between',
         alignItems: 'center',
         padding: 16

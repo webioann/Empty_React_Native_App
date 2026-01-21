@@ -1,8 +1,10 @@
 import ProfileMenuItem from '@/components/ProfileMenuItem';
-import { mockUsers } from '@/constants/mock_user_data';
 import { useTheme } from '@/context/ThemeContext';
-import type { User } from '@/types/pet_api_example.js';
-import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { mockUsers } from '@/MOCK/mock_user_data';
+import type { User } from '@/types/pet_api_example';
+import { FontAwesome6, Ionicons } from '@expo/vector-icons';
+import { router } from 'expo-router';
+import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import SafeAreaView from "../../components/SafeAreaView";
 
 const Profile_Screen = () => {
@@ -17,7 +19,7 @@ const Profile_Screen = () => {
     return (
         <SafeAreaView px={16} inset={true}>
             <ScrollView
-                contentContainerStyle={{paddingBottom: 40, flex: 1, paddingTop: 16}}
+                contentContainerStyle={{paddingBottom: 100, paddingTop: 16}}
                 showsVerticalScrollIndicator={false}
                 horizontal={false}
                 >
@@ -31,7 +33,7 @@ const Profile_Screen = () => {
                             resizeMode='contain'
                         />
                         {/* === THIS BLOCK DISPLAY IF IMAGE DO NOT WORK ===*/}
-                        <View  style={[styles.holder, {backgroundColor: theme.green}]}>
+                        <View  style={[styles.holder, {backgroundColor: theme.blue}]}>
                             <Text style={{color: theme.text_main, fontSize: 44, textAlign: 'center', fontWeight: '600'}}>
                                 {user.username.charAt(0).toUpperCase()}
                             </Text>
@@ -75,6 +77,48 @@ const Profile_Screen = () => {
                         color={theme.red}
                     />                            
                 </View>
+                {/* ==== LINKS BIG BUTTONS ========= */}
+                <TouchableOpacity 
+                    style={[styles.long_button, {backgroundColor: theme.bg_second, borderColor: theme.bg_second}]}
+                    onPress={() => router.push("/(profile)/notification")}
+                    >
+                    <View style={{flex: 1, flexDirection: 'row', alignItems: 'center', gap: 16}}>
+                        <FontAwesome6 name="bell" size={24} color={theme.text_main} />
+                        <Text style={{color: theme.text_main, fontWeight: '600', letterSpacing: 1.2}}>
+                            Notifications
+                        </Text>
+                    </View>
+                    <FontAwesome6 name="arrow-right-long" size={16} color={theme.text_main} />
+                </TouchableOpacity>
+                <TouchableOpacity 
+                    style={[styles.long_button, {backgroundColor: theme.bg_second, borderColor: theme.bg_second}]}
+                    onPress={() => router.push("/(profile)/privacy_security")}
+                    >
+                    <View style={{flex: 1, flexDirection: 'row', alignItems: 'center', gap: 16}}>
+                        <Ionicons name="shield-checkmark-outline" size={24} color={theme.text_main} />
+                        <Text style={{color: theme.text_main, fontWeight: '600', letterSpacing: 1.2}}>
+                            Privacy & Security
+                        </Text>
+                    </View>
+                    <FontAwesome6 name="arrow-right-long" size={16} color={theme.text_main} />
+                </TouchableOpacity>
+                <TouchableOpacity 
+                    style={[styles.long_button, {backgroundColor: theme.bg_second, borderColor: theme.red + "40"}]}
+                    onPress={() => console.log('SIGN OUT')}
+                    >
+                    <View style={{flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 16}}>
+                        <FontAwesome6 name="arrow-right-from-bracket" size={24} color={theme.red} />
+                        <Text style={{color: theme.red, fontWeight: '600', letterSpacing: 1.2}}>
+                            Sign Out
+                        </Text>
+                    </View>
+                </TouchableOpacity>
+
+
+                
+                
+
+
             </ScrollView>
         </SafeAreaView>
     );
@@ -87,7 +131,7 @@ const styles = StyleSheet.create({
         width: '100%',
         padding: 16,
         flexDirection: 'row',
-        borderRadius: 16,
+        borderRadius: 12,
         gap: 24
     },
     avatar: {
@@ -126,24 +170,17 @@ const styles = StyleSheet.create({
         flexWrap: 'wrap',
         justifyContent: 'space-around',
         gap: 16,
-        marginTop: 16,
-        // padding: 5
+        marginVertical: 24,
     },
-    main_link: {
-        width: '45%',
-        height: 150,
-        borderRadius: 16,
+    //  ==== LINKS BIG BUTTONS ========= 
+    long_button: {
+        width: '100%',
+        marginBottom: 16,
+        padding: 12,
+        flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        padding: 24
-    },
-    icon_box: {
-        width: 50,
-        height: 50,
-        borderRadius: 8,
-        overflow: 'hidden',
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'rgba(0, 128, 0, 0.5)'
+        borderRadius: 12,
+        borderWidth: 2
     }
 });
