@@ -43,7 +43,7 @@ const Profile_Screen = () => {
                             <MaterialIcons name="check-circle" size={24} color={theme.green} />
                         </View> */}
                     </View>
-                    <View style={styles.user_info}>
+                    <View >
                         <Text style={{color: theme.text_main, fontSize: 24, fontWeight: '800'}}>
                             {capitalize(user.username)}
                         </Text>
@@ -113,12 +113,6 @@ const Profile_Screen = () => {
                         </Text>
                     </View>
                 </TouchableOpacity>
-
-
-                
-                
-
-
             </ScrollView>
         </SafeAreaView>
     );
@@ -149,20 +143,6 @@ const styles = StyleSheet.create({
         bottom: 0, 
         left: 0, 
         right: 0
-    },
-    // badge: {
-    //     position: 'absolute', 
-    //     zIndex: 100, 
-    //     width: 26,
-    //     height: 26,
-    //     borderRadius: '50%',
-    //     overflow: 'hidden',
-    //     bottom: 3, 
-    //     right: 3
-
-    // },
-    user_info: {
-
     },
     //  ==== MAIN CENTRAL SECTION ======
     main: {
