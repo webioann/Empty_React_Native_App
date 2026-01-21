@@ -23,11 +23,11 @@ export default function Shop_Screen() {
     return (
         <SafeAreaView px={16} inset={true}>
             <ScrollView
-            horizontal={false}
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={{paddingBottom: 40}}
-            >
-            {/* === HEADER === */}
+                horizontal={false}
+                showsVerticalScrollIndicator={false}
+                contentContainerStyle={{paddingBottom: 40}}
+                >
+                {/* === HEADER === */}
                 <View style={styles.shop_header}>
                     <View >
                         <Text style={[styles.page, {color: theme.text_main}]}>Shop</Text>

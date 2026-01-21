@@ -5,7 +5,7 @@ export const mockUsers: User[] = [
         _id: "user1",
         username: "johndoe",
         email: "johndoe@example.com",
-        imageUrl: "https://i.pravatar.cc/150?img=3",
+        imageUrl: "https://i.pravatar.cc/150?img=52",
         role: 'admin',
         authProviderId: "provider123",
         addresses: [],
