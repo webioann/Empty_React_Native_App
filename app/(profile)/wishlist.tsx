@@ -1,4 +1,4 @@
-import { StyleSheet, Text } from "react-native";
+import { Text } from "react-native";
 import SafeAreaView from "../../components/SafeAreaView";
 
 export default function Wishlist_Screen() {
@@ -8,10 +8,10 @@ export default function Wishlist_Screen() {
         </SafeAreaView>
     );
 }
-const styles = StyleSheet.create({
-    header: {
-        fontSize: 30,
-        fontWeight: "bold",
-        color: "blue",
-    }
-});
+// const styles = StyleSheet.create({
+//     header: {
+//         fontSize: 30,
+//         fontWeight: "bold",
+//         color: "blue",
+//     }
+// });

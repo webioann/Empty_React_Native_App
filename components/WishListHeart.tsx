@@ -16,15 +16,11 @@ const WishListHeart = ({productId}: Props) => {
         setInList(() => isInWishlist(productId))
     }, [])
     
-    const addOrRemove = () => {
-
-    };
-
     return (
         <TouchableOpacity
             style={styles.wish_list}
             activeOpacity={0.7}
-            onPress={() => addOrRemove()}
+            onPress={() => console.log("CLICK ON HEART")}
             >
             { inList ? <Entypo name="heart" size={24} color="red" /> : <Entypo name="heart-outlined" size={24} color="red" /> }
                 

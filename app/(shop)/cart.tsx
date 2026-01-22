@@ -1,20 +1,12 @@
 import OrderListItem from '@/components/OrderListItem';
 import SeparationLine from '@/components/SeparationLine';
+import { useCART } from '@/context/Redux';
 import { useTheme } from '@/context/ThemeContext';
 import type { OrderItemType } from '@/types/product.type';
 import { FontAwesome6 } from '@expo/vector-icons';
 import { useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import SafeAreaView from "../../components/SafeAreaView";
-
-import { useCART } from '@/context/Redux';
-
-interface IInitial {
-    subTotal: number
-    shipping: number
-    taxes: number
-    total: number
-}
 
 export default function Cart_Screen() {
     const theme = useTheme()
@@ -62,12 +54,6 @@ export default function Cart_Screen() {
                 <Text style={[styles.page_title, {color: theme.text_main}]}>Cart</Text> 
                 {/* ===== ORDER LIST ========== */}
                 <View style={styles.orders_list}>
-                    {/* <FlatList
-                        data={OrderList}
-                        renderItem={({item}) => <OrderListItem item={item}/>}
-                        keyExtractor={item => item.productId}
-                        horizontal={false}
-                    /> */}
                     {cartState.map((item) => <OrderListItem item={item} key={item.productId}/>)}
                 </View>
                 {/* ===== SUMMARY =========== */}

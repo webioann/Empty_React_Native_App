@@ -35,7 +35,7 @@ const OrderListItem = ({item}: {item: OrderItemType}) => {
                     {item.productName}
                 </Text>
                 <View style={{flexDirection: 'row', alignItems: 'baseline'}}>
-                    <Text style={{color: theme.green, fontWeight: '700', fontSize: 18, marginRight: 16}}>
+                    <Text style={{color: theme.green, fontWeight: '700', fontSize: 18, marginRight: 8}}>
                         {currency}&nbsp;{(item.price * item.quantity).toFixed(2)}
                     </Text>
                     <Text style={{color: theme.text_second}}>
@@ -65,9 +65,7 @@ const OrderListItem = ({item}: {item: OrderItemType}) => {
                         <FontAwesome6 name="trash-can" size={20} color={theme.red} />
                     </TouchableOpacity>
                 </View>
-
             </View>
-            
         </View>
     )
 }
@@ -77,7 +75,7 @@ export default OrderListItem
 const styles = StyleSheet.create({
     order_item:{
         flexDirection: 'row',
-        padding: 16,
+        padding: 10,
         marginTop: 16,
         width: '100%',
         borderRadius: 8,
@@ -106,13 +104,12 @@ const styles = StyleSheet.create({
     },
     counter: {
         flexDirection: 'row', 
-        gap: 30, 
+        gap: 16, 
         justifyContent: 'space-between',
         alignItems: 'center' 
     },
     trash_can: {
         marginLeft: 'auto',
-        backgroundColor: 'red',
         width: 40,
         height: 40,
         borderRadius: '50%',

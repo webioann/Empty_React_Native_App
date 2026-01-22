@@ -1,4 +1,4 @@
-import { ColorsTypes } from "@/types/colors.types"
+import { ColorsTypes } from "@/types/colors.types";
 
 export const Colors: ColorsTypes = {
     light: {
@@ -25,10 +25,4 @@ export const Colors: ColorsTypes = {
         purple: '#790ca2',
         yellow: "#F59E0B"
     },
-}
-const appColors = {
-    green: "#10B981",
-    red: "#EF4444",
-    yellow: "#F59E0B",
-    blue: "#3B82F6"
-}
+};

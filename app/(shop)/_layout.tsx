@@ -1,4 +1,3 @@
-import { fakeAuthHook } from '@/MOCK/auth.controllers/fakeAuth';
 import { FontAwesome6, Ionicons, MaterialIcons } from '@expo/vector-icons';
 import { BlurView } from "expo-blur";
 import { Tabs } from "expo-router";
@@ -6,9 +5,6 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function App_Layout() {
   const insets = useSafeAreaInsets();
-  // PROTECTION ROUTE
-  const { isSignedIn } = fakeAuthHook();
-  // if (!isSignedIn) return <Redirect href="./(auth)/" />;
   
   return <Tabs screenOptions={{
       tabBarActiveTintColor: "#1DB954",

@@ -37,15 +37,14 @@ const Auth_Screen = () => {
             <View style={styles.auth_footer}>
                 <Text style={{color: theme.text_main }}>By signing up, you agree to our </Text>
                 <Link href="../terms/terms" asChild>
-                    <Text style={{color: theme.blue, fontWeight: '900'}}> Terms, </Text>
+                    <Text style={{color: theme.blue, fontWeight: '900'}}>&nbsp;Terms,&nbsp;</Text>
                 </Link>
-                <Text>  </Text>
                 <Link href="../terms/privacy" asChild>
-                    <Text style={{color: theme.blue, fontWeight: '900'}}> Privacy Policy, </Text>
+                    <Text style={{color: theme.blue, fontWeight: '900'}}>&nbsp;Privacy Policy,&nbsp;</Text>
                 </Link>
-                <Text  style={{color: theme.text_main }}> and </Text>
+                <Text  style={{color: theme.text_main }}>&nbsp;and&nbsp;</Text>
                 <Link href="../terms/cookie_use" asChild>
-                    <Text style={{color: theme.blue, fontWeight: '900'}}> Cookie Use .</Text>
+                    <Text style={{color: theme.blue, fontWeight: '900'}}>&nbsp;Cookie Use .</Text>
                 </Link>
             </View>
         </SafeAreaView>
