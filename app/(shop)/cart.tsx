@@ -4,8 +4,10 @@ import { useTheme } from '@/context/ThemeContext';
 import type { OrderItemType } from '@/types/product.type';
 import { FontAwesome6 } from '@expo/vector-icons';
 import { useEffect, useState } from 'react';
-import { FlatList, ScrollView, StyleSheet, Text, View } from "react-native";
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import SafeAreaView from "../../components/SafeAreaView";
+
+import { useCART } from '@/context/Redux';
 
 interface IInitial {
     subTotal: number
@@ -19,40 +21,14 @@ export default function Cart_Screen() {
     const currency = '$';
     const shippingCost = 0.09;
     const tax = 0.18;
+    const { cartState } = useCART()
 
-    const initial: IInitial = {
+    const [summary, setSummary] = useState({
         subTotal: 0,
         shipping: 0,
         taxes: 0,
         total: 0
-    }
-    const [summary, setSummary] = useState<IInitial>(initial)
-
-    // MOCK DATA ========================
-    const OrderList: OrderItemType[] = [
-        {
-            productId: "idaaa77",
-            productName: "Wireless Bluetooth Headphones Outback",
-            price: 149.99,
-            quantity: 3,
-            image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500"
-        },
-        {
-            productId: "idaaa74",
-            productName: "Portable Bluetooth Speaker",
-            price: 79.99,
-            quantity: 2,
-            image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=500"
-        },
-        {
-            productId: "idaaa71",
-            productName: "Wireless Bluetooth Headphones Outback",
-            price: 149.99,
-            quantity: 3,
-            image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500"
-        },
-
-    ]
+    })
 
     const item_Counter = (list: OrderItemType[]) => {
         const count = list.reduce((acc, array) => acc + array.quantity, 0)
@@ -73,8 +49,8 @@ export default function Cart_Screen() {
                 total: parseFloat(total.toFixed(2))
             })
         }
-        Counter(OrderList)
-    }, [])
+        Counter(cartState)
+    }, [cartState])
 
     return (
         <SafeAreaView px={16} inset={true}>
@@ -86,13 +62,13 @@ export default function Cart_Screen() {
                 <Text style={[styles.page_title, {color: theme.text_main}]}>Cart</Text> 
                 {/* ===== ORDER LIST ========== */}
                 <View style={styles.orders_list}>
-                    <FlatList
+                    {/* <FlatList
                         data={OrderList}
                         renderItem={({item}) => <OrderListItem item={item}/>}
                         keyExtractor={item => item.productId}
                         horizontal={false}
-                    />
-                    {/* {OrderList.map((item) => <OrderListItem item={item} key={item.productId}/>)} */}
+                    /> */}
+                    {cartState.map((item) => <OrderListItem item={item} key={item.productId}/>)}
                 </View>
                 {/* ===== SUMMARY =========== */}
                 <View style={[styles.summary, {backgroundColor: theme.bg_second}]}>
@@ -131,7 +107,7 @@ export default function Cart_Screen() {
                     <View style={{flex: 1, flexDirection: 'row', gap: 12}}>
                         <FontAwesome6 name="cart-shopping" size={16} color={theme.green} />
                         <Text style={{color: theme.text_second}}>
-                            {item_Counter(OrderList)}
+                            {item_Counter(cartState)}
                         </Text>
                     </View>
                     <Text style={{color: theme.text_main, fontSize: 16, fontWeight: '700'}}>
@@ -139,10 +115,13 @@ export default function Cart_Screen() {
                     </Text>
                 </View>
                 {/* ======== CHECKOUT BUTTON =========== */}
-                <View style={[styles.checkout_btn, {backgroundColor: theme.green}]}>
+                <TouchableOpacity 
+                    onPress={() => console.log("CHECKOUT")}
+                    style={[styles.checkout_btn, {backgroundColor: theme.green}]}
+                    >
                     <Text style={{fontWeight: '600', fontSize: 16}}>Checkout</Text>
                     <FontAwesome6 name="arrow-right-long" size={18} color={theme.bg_main} />
-                </View>
+                </TouchableOpacity>
             </ScrollView>
         </SafeAreaView>
     );

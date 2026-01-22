@@ -1,15 +1,18 @@
+import { useCART } from '@/context/Redux';
 import { useTheme } from '@/context/ThemeContext';
 import type { OrderItemType } from '@/types/product.type';
 import { FontAwesome6 } from '@expo/vector-icons';
 import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-
 const OrderListItem = ({item}: {item: OrderItemType}) => {
     const theme = useTheme()
     const currency = '$';
-    
-    return (
+    const { increaseQuantity, decreaseQuantity } = useCART()
+
+    //if quantity strict equal 0 do not render !!!
+    if( item.quantity === 0 ) return null;
+    else return (
         <View style={[styles.order_item, {backgroundColor: theme.bg_second}]}>
             <View style={styles.image}>
                 <Image source={{uri: item.image}} resizeMode='cover' style={{flex: 1}}/>
@@ -20,17 +23,21 @@ const OrderListItem = ({item}: {item: OrderItemType}) => {
                 </View>
             </View>
             <View style={[styles.main_info, {gap: 6}]}>
-                <Text style={{color: theme.text_main, fontWeight: '700', fontSize: 16, lineHeight: 20}}>{item.productName}</Text>
+                <Text style={{color: theme.text_main, fontWeight: '700', fontSize: 16, lineHeight: 20}}>
+                    {item.productName}
+                </Text>
                 <View style={{flexDirection: 'row', alignItems: 'baseline'}}>
                     <Text style={{color: theme.green, fontWeight: '700', fontSize: 18, marginRight: 16}}>
-                        {currency}&nbsp;{item.price * item.quantity}
+                        {currency}&nbsp;{(item.price * item.quantity).toFixed(2)}
                     </Text>
-                    <Text style={{color: theme.text_second}}>{currency}&nbsp;{item.price}&nbsp;each</Text>
+                    <Text style={{color: theme.text_second}}>
+                        {currency}&nbsp;{(item.price).toFixed(2)}&nbsp;each
+                    </Text>
                 </View>
                 <View style={styles.counter}>
                     <TouchableOpacity  
                         activeOpacity={0.7}
-                        onPress={() => console.log('HELLO COUNTER __ MINUS')} 
+                        onPress={() => decreaseQuantity(item.productId)} 
                         style={{}}
                         >
                         <FontAwesome6 name="circle-minus" size={30} color={theme.green} />
@@ -38,7 +45,7 @@ const OrderListItem = ({item}: {item: OrderItemType}) => {
                     <Text style={{color: theme.text_main, fontSize: 18}}>{item.quantity}</Text>
                     <TouchableOpacity 
                         activeOpacity={0.7}
-                        onPress={() => console.log('HELLO COUNTER__ PLUS')} 
+                        onPress={() => increaseQuantity(item.productId)} 
                         >
                         <FontAwesome6 name="circle-plus" size={30} color={theme.green} />
                     </TouchableOpacity>

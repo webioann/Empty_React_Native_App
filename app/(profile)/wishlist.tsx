@@ -4,7 +4,7 @@ import SafeAreaView from "../../components/SafeAreaView";
 export default function Wishlist_Screen() {
     return (
         <SafeAreaView px={16} inset={true}>
-            <Text style={styles.header}>Wishlist SCREEN</Text>
+            <Text>Wishlist</Text>
         </SafeAreaView>
     );
 }
