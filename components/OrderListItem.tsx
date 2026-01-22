@@ -2,17 +2,25 @@ import { useCART } from '@/context/Redux';
 import { useTheme } from '@/context/ThemeContext';
 import type { OrderItemType } from '@/types/product.type';
 import { FontAwesome6 } from '@expo/vector-icons';
-import React from 'react';
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Alert, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 const OrderListItem = ({item}: {item: OrderItemType}) => {
     const theme = useTheme()
     const currency = '$';
-    const { increaseQuantity, decreaseQuantity } = useCART()
+    const { increaseQuantity, decreaseQuantity, removeItemFromOrderList } = useCART()
 
-    //if quantity strict equal 0 do not render !!!
-    if( item.quantity === 0 ) return null;
-    else return (
+    const getReduceQuantity = () => {
+        if( item.quantity > 1 ) { decreaseQuantity(item.productId) }
+        if( item.quantity <= 1 ) {
+            Alert.alert('Warning !!!', 'Are you wont delete this product from Cart',[
+                { text: 'Cancel', onPress: () => console.log('Cancel Pressed'), },
+                { text: 'Remove from Orders', onPress: () => removeItemFromOrderList(item.productId), style: 'cancel',},
+            ])
+            return
+        }
+    }
+
+    return (
         <View style={[styles.order_item, {backgroundColor: theme.bg_second}]}>
             <View style={styles.image}>
                 <Image source={{uri: item.image}} resizeMode='cover' style={{flex: 1}}/>
@@ -37,7 +45,7 @@ const OrderListItem = ({item}: {item: OrderItemType}) => {
                 <View style={styles.counter}>
                     <TouchableOpacity  
                         activeOpacity={0.7}
-                        onPress={() => decreaseQuantity(item.productId)} 
+                        onPress={() => getReduceQuantity()} 
                         style={{}}
                         >
                         <FontAwesome6 name="circle-minus" size={30} color={theme.green} />
@@ -51,7 +59,7 @@ const OrderListItem = ({item}: {item: OrderItemType}) => {
                     </TouchableOpacity>
                     <TouchableOpacity  
                         activeOpacity={0.7}
-                        onPress={() => console.log('TRASH CAN')} 
+                        onPress={() => removeItemFromOrderList(item.productId)} 
                         style={[styles.trash_can, {backgroundColor: theme.red + "30"}]}
                         >
                         <FontAwesome6 name="trash-can" size={20} color={theme.red} />

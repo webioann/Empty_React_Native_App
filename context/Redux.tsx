@@ -6,6 +6,7 @@ interface ICartValue {
     cartState: OrderItemType[] | []
     increaseQuantity: (productId: string) => void
     decreaseQuantity: (productId: string) => void
+    removeItemFromOrderList: (productId: string) => void
 }
 
 export const CartContext = createContext<ICartValue | null>(null);
@@ -34,7 +35,7 @@ const CartProvider = ({ children }: {children: React.ReactNode}) => {
     const decreaseQuantity = (productId: string) => {
         const updatedOrderList = cartState.map((item) =>  {
             if( item.productId === productId ) { 
-                if( item.quantity === 0) return item;
+                if( item.quantity === 0) return item
                 return { ...item, quantity: item.quantity - 1 } 
             }
             return item;
@@ -43,9 +44,15 @@ const CartProvider = ({ children }: {children: React.ReactNode}) => {
         setCartState(updatedOrderList);
     };
 
+    const removeItemFromOrderList = (productId: string) => {
+        const updatedOrderList = cartState.filter(item => item.productId !== productId);
+        console.log("REMOVE ITEM");
+        setCartState(updatedOrderList);
+    };
+
 
     return (
-        <CartContext.Provider value = {{ cartState, increaseQuantity, decreaseQuantity }}>
+        <CartContext.Provider value = {{ cartState, increaseQuantity, decreaseQuantity, removeItemFromOrderList }}>
             {children}
         </CartContext.Provider>
     );
