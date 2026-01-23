@@ -43,9 +43,12 @@ const CartProvider = ({ children }: {children: React.ReactNode}) => {
                 }
                 if( currentStorageData !== null ) {
                     const stored = JSON.parse(currentStorageData) as OrderListItemType[]
-                    const updatedArray = stored.concat(newCartItem)
-                    setCartState([...updatedArray])
-                    await AsyncStorage.setItem(CART_STORAGE_KEY, JSON.stringify(updatedArray))
+                    const ifItemWasStored = stored.some((item) => item.productId === product._id)
+                    if( !ifItemWasStored ) {
+                        const updatedArray = stored.concat(newCartItem)
+                        setCartState([...updatedArray])
+                        await AsyncStorage.setItem(CART_STORAGE_KEY, JSON.stringify(updatedArray))
+                    }
                 }
             }
             console.log("NEW PRODUCT NOT ADDED TO CART");
@@ -60,8 +63,8 @@ const CartProvider = ({ children }: {children: React.ReactNode}) => {
         console.log("REMOVE ITEM");
         setCartState(updatedOrderList);
     };
-
-    const increaseQuantity = (productId: string) => {
+    // INCREASE ITEM QUANTITY ( PLUS QUANTITY) ===
+    const increaseQuantity = async (productId: string) => {
         const updatedOrderList = cartState.map((item) =>  {
             if( item.productId === productId ) { 
                 return { ...item, quantity: item.quantity + 1 }}
@@ -69,9 +72,10 @@ const CartProvider = ({ children }: {children: React.ReactNode}) => {
         })
         console.log("REDUX => PLUS!!!");
         setCartState(updatedOrderList);
+        await AsyncStorage.setItem(CART_STORAGE_KEY, JSON.stringify(updatedOrderList))
     };
-
-    const decreaseQuantity = (productId: string) => {
+    // REDUCE ITEM QUANTITY ( MINUS QUANTITY) ===
+    const decreaseQuantity = async (productId: string) => {
         const updatedOrderList = cartState.map((item) =>  {
             if( item.productId === productId ) { 
                 if( item.quantity === 0) return item
@@ -81,6 +85,7 @@ const CartProvider = ({ children }: {children: React.ReactNode}) => {
         })
         console.log("REDUX => MINUS!!!");
         setCartState(updatedOrderList);
+        await AsyncStorage.setItem(CART_STORAGE_KEY, JSON.stringify(updatedOrderList))
     };
 
     // Load data from AsyncStorage on app start
