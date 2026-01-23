@@ -1,4 +1,4 @@
-export interface OrderItemType {
+export interface OrderListItemType {
     productId: string;
     productName: string;
     price: number;

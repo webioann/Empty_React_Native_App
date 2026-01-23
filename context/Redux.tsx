@@ -1,9 +1,9 @@
-import { OrderList } from '@/MOCK/orderListData';
-import type { OrderItemType, ProductType } from '@/types/product.type';
-import React, { createContext, useContext, useState } from 'react';
-
+import type { OrderListItemType, ProductType } from '@/types/product.type';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import React, { createContext, useContext, useEffect, useState } from 'react';
+// await AsyncStorage.getItem(THEME_STORAGE_KEY)
 interface ICartValue {
-    cartState: OrderItemType[] | []
+    cartState: OrderListItemType[] | []
     increaseQuantity: (productId: string) => void
     decreaseQuantity: (productId: string) => void
     removeItemFromOrderList: (productId: string) => void
@@ -22,11 +22,13 @@ export const useCART = () => {
 
 const CartProvider = ({ children }: {children: React.ReactNode}) => {
     // WARNING !!! initial state must be loaded from DB or be empty Array ===
-    const [cartState, setCartState] = useState<OrderItemType[]>(OrderList) 
+    const [cartState, setCartState] = useState<OrderListItemType[]>([])
+    const CART_STORAGE_KEY = "@cart_storage";
 
-    const addNewItemToOrderList = (product: ProductType) => {
+
+    const addNewItemToOrderList = async (product: ProductType) => {
         if( product ) {
-            const newCartItem: OrderItemType = {
+            const newCartItem: OrderListItemType = {
                 productId: product._id,
                 productName: product.name,
                 price: product.price,
@@ -60,12 +62,27 @@ const CartProvider = ({ children }: {children: React.ReactNode}) => {
         setCartState(updatedOrderList);
     };
 
-    const removeItemFromOrderList = (productId: string) => {
+    const removeItemFromOrderList = async (productId: string) => {
         const updatedOrderList = cartState.filter(item => item.productId !== productId);
+        await AsyncStorage.setItem(CART_STORAGE_KEY, JSON.stringify(updatedOrderList))
         console.log("REMOVE ITEM");
         setCartState(updatedOrderList);
     };
-
+    // Load data from AsyncStorage on app start
+    useEffect(() => {
+        const getAsyncStorageCartData = async() => {
+            try{
+                const storageDataJSON = await AsyncStorage.getItem(CART_STORAGE_KEY)
+                if( storageDataJSON !== null ) {
+                    const storage = JSON.parse(storageDataJSON) as OrderListItemType[]
+                    setCartState(storage)
+                }
+            } catch (error){ 
+                console.error("Failed to load Cart Data in time START:", error);
+            }
+        }
+        getAsyncStorageCartData();
+    }, [])
 
     return (
         <CartContext.Provider value = {{ 
