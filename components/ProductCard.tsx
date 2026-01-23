@@ -1,19 +1,20 @@
+import { useCART } from '@/context/Redux';
 import { useTheme } from '@/context/ThemeContext';
 import type { ProductType } from '@/types/pet_api_example';
-import { FontAwesome6, Ionicons } from '@expo/vector-icons';
-import React from 'react';
+import { Ionicons } from '@expo/vector-icons';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import WishListHeart from './WishListHeart';
 
 const ProductCard = ({product}: {product: ProductType}) => {
     const theme = useTheme();
     const currency = '$';
+    const { addNewItemToOrderList } = useCART();
 
     return (
         <TouchableOpacity
             style={[styles.card, {backgroundColor: theme.bg_second}]}
             activeOpacity={0.7}
-            onPress={() => console.log(' => router.push(`/product/${product._id}`)')}
+            onPress={() => console.log("ON PRESS TO PRODUCT CARD")}
             >
             {/* === IMAGE and WISHLIST HEART== */}
             <View style={{position: 'relative'}}>
@@ -34,14 +35,19 @@ const ProductCard = ({product}: {product: ProductType}) => {
                         <Text className="text-text-primary text-xs font-semibold ml-1" style={{fontSize: 12, color: theme.text_main}}>
                             {product.averageRating.toFixed(1)}
                         </Text>
-                        <Text className="text-text-secondary text-xs ml-1" style={{fontSize: 12, color: theme.text_main}}>({product.totalReviews})</Text>
+                        <Text style={{fontSize: 12, color: theme.text_main}}>
+                            ({product.totalReviews})
+                        </Text>
                     </View>   
                 </View>
                 <View style={[styles.price_row]}>
                     <Text style={{color: theme.green, fontSize: 20, fontWeight: '700'}}>
                         {currency}&nbsp;{product.price.toFixed(2)}
                     </Text>
-                    <FontAwesome6 name="circle-plus" size={24} color={theme.green} />
+                    <TouchableOpacity onPress={() => addNewItemToOrderList(product)}>
+                        {/* <Text>Add to Cart</Text> */}
+                        <Ionicons name="cart-outline" size={30} color={theme.green} />
+                    </TouchableOpacity>
                 </View>         
             </View>
         

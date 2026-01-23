@@ -1,5 +1,5 @@
 import { OrderList } from '@/MOCK/orderListData';
-import type { OrderItemType } from '@/types/product.type';
+import type { OrderItemType, ProductType } from '@/types/product.type';
 import React, { createContext, useContext, useState } from 'react';
 
 interface ICartValue {
@@ -7,7 +7,8 @@ interface ICartValue {
     increaseQuantity: (productId: string) => void
     decreaseQuantity: (productId: string) => void
     removeItemFromOrderList: (productId: string) => void
-}
+    addNewItemToOrderList: (productId: ProductType) => void
+};
 
 export const CartContext = createContext<ICartValue | null>(null);
 
@@ -20,7 +21,22 @@ export const useCART = () => {
 };
 
 const CartProvider = ({ children }: {children: React.ReactNode}) => {
+    // WARNING !!! initial state must be loaded from DB or be empty Array ===
     const [cartState, setCartState] = useState<OrderItemType[]>(OrderList) 
+
+    const addNewItemToOrderList = (product: ProductType) => {
+        if( product ) {
+            const newCartItem: OrderItemType = {
+                productId: product._id,
+                productName: product.name,
+                price: product.price,
+                quantity: 1,
+                image: product.images[0]
+            }
+            setCartState((prev) => [...prev, newCartItem])
+        }
+        console.log("NEW PRODUCT NOT ADDED TO CART");
+    };
 
     const increaseQuantity = (productId: string) => {
         const updatedOrderList = cartState.map((item) =>  {
@@ -52,7 +68,12 @@ const CartProvider = ({ children }: {children: React.ReactNode}) => {
 
 
     return (
-        <CartContext.Provider value = {{ cartState, increaseQuantity, decreaseQuantity, removeItemFromOrderList }}>
+        <CartContext.Provider value = {{ 
+            addNewItemToOrderList,
+            cartState, 
+            increaseQuantity, 
+            decreaseQuantity,
+            removeItemFromOrderList }}>
             {children}
         </CartContext.Provider>
     );
