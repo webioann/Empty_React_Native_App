@@ -25,19 +25,40 @@ const CartProvider = ({ children }: {children: React.ReactNode}) => {
     const [cartState, setCartState] = useState<OrderListItemType[]>([])
     const CART_STORAGE_KEY = "@cart_storage";
 
-
+    // ADD NEW ITEM TO CART STATE AND ASYNC STORAGE =====
     const addNewItemToOrderList = async (product: ProductType) => {
-        if( product ) {
-            const newCartItem: OrderListItemType = {
-                productId: product._id,
-                productName: product.name,
-                price: product.price,
-                quantity: 1,
-                image: product.images[0]
+        try {
+            if( product ) {
+                const newCartItem: OrderListItemType = {
+                    productId: product._id,
+                    productName: product.name,
+                    price: product.price,
+                    quantity: 1,
+                    image: product.images[0]
+                }
+                const currentStorageData = await AsyncStorage.getItem(CART_STORAGE_KEY)
+                if( currentStorageData === null ) {
+                    setCartState([newCartItem])
+                    await AsyncStorage.setItem(CART_STORAGE_KEY, JSON.stringify(newCartItem))
+                }
+                if( currentStorageData !== null ) {
+                    const stored = JSON.parse(currentStorageData) as OrderListItemType[]
+                    const updatedArray = stored.concat(newCartItem)
+                    setCartState([...updatedArray])
+                    await AsyncStorage.setItem(CART_STORAGE_KEY, JSON.stringify(updatedArray))
+                }
             }
-            setCartState((prev) => [...prev, newCartItem])
+            console.log("NEW PRODUCT NOT ADDED TO CART");
+        } catch (error) {
+            console.error("Failed to add new item to Cart Data :", error);
         }
-        console.log("NEW PRODUCT NOT ADDED TO CART");
+    };
+    // REMOVE ITEM FROM CART STATE AND ASYNC STORAGE =====
+    const removeItemFromOrderList = async (productId: string) => {
+        const updatedOrderList = cartState.filter(item => item.productId !== productId);
+        await AsyncStorage.setItem(CART_STORAGE_KEY, JSON.stringify(updatedOrderList))
+        console.log("REMOVE ITEM");
+        setCartState(updatedOrderList);
     };
 
     const increaseQuantity = (productId: string) => {
@@ -62,12 +83,6 @@ const CartProvider = ({ children }: {children: React.ReactNode}) => {
         setCartState(updatedOrderList);
     };
 
-    const removeItemFromOrderList = async (productId: string) => {
-        const updatedOrderList = cartState.filter(item => item.productId !== productId);
-        await AsyncStorage.setItem(CART_STORAGE_KEY, JSON.stringify(updatedOrderList))
-        console.log("REMOVE ITEM");
-        setCartState(updatedOrderList);
-    };
     // Load data from AsyncStorage on app start
     useEffect(() => {
         const getAsyncStorageCartData = async() => {
@@ -76,7 +91,7 @@ const CartProvider = ({ children }: {children: React.ReactNode}) => {
                 if( storageDataJSON !== null ) {
                     const storage = JSON.parse(storageDataJSON) as OrderListItemType[]
                     setCartState(storage)
-                }
+                } 
             } catch (error){ 
                 console.error("Failed to load Cart Data in time START:", error);
             }

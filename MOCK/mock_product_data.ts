@@ -1,6 +1,6 @@
 export const mockProductData = [
     {
-    _id: "idaaa77",
+    _id: "idaaa70",
     name: "Wireless Bluetooth Headphones",
     description:
       "Premium over-ear headphones with active noise cancellation, 30-hour battery life, and premium sound quality. Perfect for music lovers and travelers.",
@@ -15,7 +15,7 @@ export const mockProductData = [
     totalReviews: 128,
   },
   {
-    _id: "idaaa78",
+    _id: "idaaa71",
     name: "Smart Watch Series 5",
     description:
       "Advanced fitness tracking, heart rate monitor, GPS, and water-resistant design. Stay connected with notifications and apps on your wrist.",
@@ -30,7 +30,7 @@ export const mockProductData = [
     totalReviews: 256,
   },
   {
-    _id: "idaaa79",
+    _id: "idaaa72",
     name: "Leather Crossbody Bag",
     description:
       "Handcrafted genuine leather bag with adjustable strap. Features multiple compartments and elegant design perfect for daily use.",
@@ -45,7 +45,7 @@ export const mockProductData = [
     totalReviews: 89,
   },
   {
-    _id: "idaaa76",
+    _id: "idaaa73",
     name: "Running Shoes - Pro Edition",
     description:
       "Lightweight running shoes with responsive cushioning and breathable mesh upper. Designed for performance and comfort during long runs.",
@@ -60,7 +60,7 @@ export const mockProductData = [
     totalReviews: 342,
   },
   {
-    _id: "idaaa75",
+    _id: "idaaa74",
     name: "Bestselling Mystery Novel",
     description:
       "A gripping psychological thriller that will keep you on the edge of your seat. New York Times bestseller with over 1 million copies sold.",
@@ -75,7 +75,7 @@ export const mockProductData = [
     totalReviews: 1243,
   },
   {
-    _id: "idaaa74",
+    _id: "idaaa75",
     name: "Portable Bluetooth Speaker",
     description:
       "Waterproof wireless speaker with 360-degree sound, 12-hour battery life, and durable design. Perfect for outdoor adventures.",
@@ -90,7 +90,7 @@ export const mockProductData = [
     totalReviews: 167,
   },
   {
-    _id: "idaaa73",
+    _id: "idaaa76",
     name: "Classic Denim Jacket",
     description:
       "Timeless denim jacket with vintage wash and comfortable fit. A wardrobe essential that pairs perfectly with any outfit.",
@@ -105,7 +105,7 @@ export const mockProductData = [
     totalReviews: 95,
   },
   {
-    _id: "idaaa72",
+    _id: "idaaa77",
     name: "Yoga Mat Pro",
     description:
       "Extra-thick non-slip yoga mat with carrying strap. Eco-friendly material provides excellent cushioning and grip for all yoga styles.",
@@ -120,7 +120,7 @@ export const mockProductData = [
     totalReviews: 203,
   },
   {
-    _id: "idaaa71",
+    _id: "idaaa78",
     name: "Mechanical Keyboard RGB",
     description:
       "Gaming keyboard with customizable RGB lighting, mechanical switches, and programmable keys. Built for gamers and typing enthusiasts.",
@@ -135,7 +135,7 @@ export const mockProductData = [
     totalReviews: 421,
   },
   {
-    _id: "idaaa70",
+    _id: "idaaa79",
     name: "Coffee Table Book Collection",
     description:
       "Stunning photography book featuring architecture and design from around the world. Hardcover edition with 300+ pages of inspiration.",

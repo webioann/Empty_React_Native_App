@@ -2,7 +2,7 @@ import OrderListItem from '@/components/OrderListItem';
 import SeparationLine from '@/components/SeparationLine';
 import { useCART } from '@/context/Redux';
 import { useTheme } from '@/context/ThemeContext';
-import type { OrderItemType } from '@/types/product.type';
+import type { OrderListItemType } from '@/types/product.type';
 import { FontAwesome6 } from '@expo/vector-icons';
 import { useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
@@ -22,14 +22,14 @@ export default function Cart_Screen() {
         total: 0
     })
 
-    const item_Counter = (list: OrderItemType[]) => {
+    const item_Counter = (list: OrderListItemType[]) => {
         const count = list.reduce((acc, array) => acc + array.quantity, 0)
         if( count === 1 ) return `${count} item`
         if( count > 1 ) return `${count} items`
     }
 
     useEffect(() => {
-        const Counter = (list: OrderItemType[]) => {
+        const Counter = (list: OrderListItemType[]) => {
             const count = list.reduce((acc, array) => acc + array.quantity * array.price, 0);
             const shipping = count * shippingCost;
             const taxes = count * tax;
