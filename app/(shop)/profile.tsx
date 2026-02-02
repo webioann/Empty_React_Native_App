@@ -1,7 +1,7 @@
 import ProfileMenuItem from '@/components/ProfileMenuItem';
 import { useTheme } from '@/context/ThemeContext';
 import { mockUsers } from '@/MOCK/mock_user_data';
-import type { User } from '@/types/pet_api_example';
+import type { UserType } from '@shared-types/user.types.js';
 import { FontAwesome6, Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
@@ -9,7 +9,7 @@ import SafeAreaView from "../../components/SafeAreaView";
 
 const Profile_Screen = () => {
     const theme = useTheme();
-    const user: User = mockUsers[0] 
+    const user = mockUsers[0] 
 
     const capitalize = (word: string) => {
         if (word.length === 0) return word
@@ -28,7 +28,7 @@ const Profile_Screen = () => {
                     {/* === USER AVATAR === */}
                     <View style={styles.avatar}>
                         <Image 
-                            source={{uri: user.imageUrl}} 
+                            source={{uri: "https://i.pravatar.cc/150?img=52"}} 
                             style={{flex: 1, zIndex: 1}} 
                             resizeMode='contain'
                         />

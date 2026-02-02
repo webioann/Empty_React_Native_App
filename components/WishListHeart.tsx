@@ -2,9 +2,7 @@ import { Entypo } from '@expo/vector-icons';
 import { useEffect, useState } from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 
-type Props = { productId: string }
-
-const WishListHeart = ({productId}: Props) => {
+const WishListHeart = (productId: string) => {
     const [inList, setInList] = useState(false)
     const wishList = ["idaaa77", "idaaa70", "idaaa74"]
 

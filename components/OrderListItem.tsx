@@ -1,6 +1,6 @@
 import { useCART } from '@/context/Redux';
 import { useTheme } from '@/context/ThemeContext';
-import type { OrderItemType } from '@/types/product.type';
+import type { OrderItemType } from '@shared-types/order.types.js';
 import { FontAwesome6 } from '@expo/vector-icons';
 import { Alert, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 

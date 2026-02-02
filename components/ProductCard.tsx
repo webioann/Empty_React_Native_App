@@ -1,6 +1,6 @@
 import { useCART } from '@/context/Redux';
 import { useTheme } from '@/context/ThemeContext';
-import type { ProductType } from '@/types/pet_api_example';
+import type { ProductType } from '@shared-types/product.types';
 import { Ionicons } from '@expo/vector-icons';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import WishListHeart from './WishListHeart';
@@ -23,7 +23,7 @@ const ProductCard = ({product}: {product: ProductType}) => {
                     style={{width: '100%', height: 180, backgroundColor: theme.bg_minor}}
                     resizeMode="cover"
                 />
-                <WishListHeart productId={product._id}/>
+                <WishListHeart productId={product._id.toString()}/>
             </View>
             {/* === PRODUCT DATA === */}
             <View style={[styles.info, {backgroundColor: theme.bg_second}]}>

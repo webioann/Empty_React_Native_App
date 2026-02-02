@@ -1,6 +1,7 @@
-import type { User } from "@/types/pet_api_example.js";
+import type { UserType } from "@shared-types/user.types";
+import { Types, Document } from 'mongoose';
 
-export const mockUsers: User[] = [
+export const mockUsers = [
     {
         _id: "user1",
         username: "johndoe",

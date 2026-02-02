@@ -1,12 +1,15 @@
-import type { OrderListItemType, ProductType } from '@/types/product.type';
+import type { ProductType } from '@shared-types/product.types';
+import type { OrderItemType } from '@shared-types/order.types';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { createContext, useContext, useEffect, useState } from 'react';
+import { Types } from 'mongoose';
+
 // await AsyncStorage.getItem(THEME_STORAGE_KEY)
 interface ICartValue {
-    cartState: OrderListItemType[] | []
-    increaseQuantity: (productId: string) => void
-    decreaseQuantity: (productId: string) => void
-    removeItemFromOrderList: (productId: string) => void
+    cartState: OrderItemType[] | []
+    increaseQuantity: (productId: Types.ObjectId) => void
+    decreaseQuantity: (productId: Types.ObjectId) => void
+    removeItemFromOrderList: (productId: Types.ObjectId) => void
     addNewItemToOrderList: (productId: ProductType) => void
 };
 
@@ -22,14 +25,14 @@ export const useCART = () => {
 
 const CartProvider = ({ children }: {children: React.ReactNode}) => {
     // WARNING !!! initial state must be loaded from DB or be empty Array ===
-    const [cartState, setCartState] = useState<OrderListItemType[]>([])
+    const [cartState, setCartState] = useState<OrderItemType[]>([])
     const CART_STORAGE_KEY = "@cart_storage";
 
     // ADD NEW ITEM TO CART STATE AND ASYNC STORAGE =====
     const addNewItemToOrderList = async (product: ProductType) => {
         try {
             if( product ) {
-                const newCartItem: OrderListItemType = {
+                const newCartItem: OrderItemType = {
                     productId: product._id,
                     productName: product.name,
                     price: product.price,
@@ -42,7 +45,7 @@ const CartProvider = ({ children }: {children: React.ReactNode}) => {
                     await AsyncStorage.setItem(CART_STORAGE_KEY, JSON.stringify(newCartItem))
                 }
                 if( currentStorageData !== null ) {
-                    const stored = JSON.parse(currentStorageData) as OrderListItemType[]
+                    const stored = JSON.parse(currentStorageData) as OrderItemType[]
                     const ifItemWasStored = stored.some((item) => item.productId === product._id)
                     if( !ifItemWasStored ) {
                         const updatedArray = stored.concat(newCartItem)
@@ -57,14 +60,14 @@ const CartProvider = ({ children }: {children: React.ReactNode}) => {
         }
     };
     // REMOVE ITEM FROM CART STATE AND ASYNC STORAGE =====
-    const removeItemFromOrderList = async (productId: string) => {
+    const removeItemFromOrderList = async (productId: Types.ObjectId) => {
         const updatedOrderList = cartState.filter(item => item.productId !== productId);
         await AsyncStorage.setItem(CART_STORAGE_KEY, JSON.stringify(updatedOrderList))
         console.log("REMOVE ITEM");
         setCartState(updatedOrderList);
     };
     // INCREASE ITEM QUANTITY ( PLUS QUANTITY) ===
-    const increaseQuantity = async (productId: string) => {
+    const increaseQuantity = async (productId: Types.ObjectId) => {
         const updatedOrderList = cartState.map((item) =>  {
             if( item.productId === productId ) { 
                 return { ...item, quantity: item.quantity + 1 }}
@@ -75,7 +78,7 @@ const CartProvider = ({ children }: {children: React.ReactNode}) => {
         await AsyncStorage.setItem(CART_STORAGE_KEY, JSON.stringify(updatedOrderList))
     };
     // REDUCE ITEM QUANTITY ( MINUS QUANTITY) ===
-    const decreaseQuantity = async (productId: string) => {
+    const decreaseQuantity = async (productId: Types.ObjectId) => {
         const updatedOrderList = cartState.map((item) =>  {
             if( item.productId === productId ) { 
                 if( item.quantity === 0) return item
@@ -94,7 +97,7 @@ const CartProvider = ({ children }: {children: React.ReactNode}) => {
             try{
                 const storageDataJSON = await AsyncStorage.getItem(CART_STORAGE_KEY)
                 if( storageDataJSON !== null ) {
-                    const storage = JSON.parse(storageDataJSON) as OrderListItemType[]
+                    const storage = JSON.parse(storageDataJSON) as OrderItemType[]
                     setCartState(storage)
                 } 
             } catch (error){ 
